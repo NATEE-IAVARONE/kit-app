@@ -1,0 +1,11 @@
+{
+  "shells-tester": {
+    "electron": {}
+  },
+  "__default": {
+    "output": {
+      "dirname": "../merged/",
+      "name": "{{ shell.name }}-{{ app.name }}"
+    }
+  }
+}
