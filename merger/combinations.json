@@ -1,11 +1,22 @@
 {
-  "shells-tester": {
-    "electron": {}
+  "apps": {
+    "shells-tester": {
+      "shells": {
+        "electron": {}
+      }
+    }
   },
-  "__default": {
+  "__app-defaults": {},
+  "__shell-defaults": {
     "output": {
-      "dirname": "../merged/",
-      "name": "{{ shell.name }}-{{ app.name }}"
+      "dirname": "{{ confDirname }}/../merged",
+      "name": "{{ shellID }}-{{ appID }}"
+    },
+    "resources": {
+      "shell-dist": {
+        "dirname": "{{ confDirname }}/../shells/{{ shellID }}",
+        "name": "dist"
+      }
     }
   }
 }
