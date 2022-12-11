@@ -1,0 +1,6 @@
+[submodule "shells/electron"]
+	path = shells/electron
+	url = https://github.com/NATEE-IAVARONE/kit-electron.git
+[submodule "apps/shells-tester"]
+	path = apps/shells-tester
+	url = https://github.com/NATEE-IAVARONE/kit-amplication.git
