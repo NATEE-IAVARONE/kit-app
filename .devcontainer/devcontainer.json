@@ -1,0 +1,19 @@
+{
+	"name": "KIT-APP",
+	"dockerComposeFile": "../docker-compose.yml",
+	"service": "ubuntu",
+
+  "extensions": [
+		"GitLab.gitlab-workflow",
+		"eamodio.gitlens",
+	],
+
+	"remoteUser": "ubuntu",
+
+	"workspaceFolder": "/home/ubuntu/KIT-APP",
+
+	"forwardPorts": [
+		80,
+		443
+	]
+}

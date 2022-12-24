@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{ "path": ".", "name": "root"       },
+	],
+	"settings": {
+		"files.exclude": {
+			"project": true
+		},
+    "[dockerfile]": {
+      "editor.quickSuggestions": {
+        "strings": true
+      }
+    },
+		"files.autoSave": "onFocusChange",
+		"editor.tabSize": 2,
+		"task.allowAutomaticTasks": "on"
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "install index",
+				"type": "shell",
+				"command": "cd ../.. && chmod +x ./install.sh && ./install.sh && npm test && npm start",
+				"presentation": {
+					"reveal": "always",
+					"panel": "new"
+				},
+				"runOptions": { "runOn": "folderOpen" }
+			}
+		]
+	}
+}
