@@ -1,7 +1,7 @@
 {
-  "name": "app-kit",
+  "name": "kit-app",
   "version": "1.0.0",
-  "description": "Open this directory inside VsCode.",
+  "description": "KIT APP",
   "scripts": {
     "start": "echo no start script",
     "test": "echo no test script"
