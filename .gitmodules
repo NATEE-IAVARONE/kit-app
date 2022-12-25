@@ -4,3 +4,6 @@
 [submodule "apps/shells-tester"]
 	path = apps/shells-tester
 	url = https://github.com/NATEE-IAVARONE/kit-amplication.git
+[submodule "shells/sveltkit-electron"]
+	path = shells/sveltkit-electron
+	url = https://github.com/NATEE-IAVARONE/kit-sveltekit-electron.git
