@@ -2,4 +2,4 @@ git config --global --add safe.directory '*'
 
 npm i
 
-cd ~/KIT-APP
+npm i --prefix ./shells/sveltkit-electron
