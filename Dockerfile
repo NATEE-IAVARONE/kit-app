@@ -23,6 +23,10 @@ ARG REL_HOME__PROJ
 ENV REL_HOME__PROJ $REL_HOME__PROJ
 
 
+dpkg --add-architecture i386
+apt update
+apt install -y wine64 wine32 libnss3-dev libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0
+
 ######################### Generator: plugin-vscode.dev #########################
 RUN echo "${OLD_USER_NAME}:${USER_NAME}" | chpasswd
 RUN usermod -md "${USER_DIR}" -l "${USER_NAME}" "${OLD_USER_NAME}"
