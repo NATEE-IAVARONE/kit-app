@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/natee.iavarone/index/workspace
+FROM mcr.microsoft.com/devcontainers/typescript-node:0-18
 
 ARG PROJ_NAME
 ENV PROJ_NAME $PROJ_NAME
