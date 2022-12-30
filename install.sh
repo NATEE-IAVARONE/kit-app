@@ -5,7 +5,7 @@ npm i
 
 git submodule update --init
 
-npm i --prefix ./shells/sveltkit-electron
+(cd ./shells/sveltkit-electron; npm i)
 
 sudo dpkg --add-architecture i386
 sudo apt update
