@@ -14,6 +14,7 @@
 		"@sveltejs/kit": "^1.0.0-next.587",
 		"svelte": "^3.54.0",
 		"svelte-check": "^2.9.2",
+		"sveltekit-adapter-chrome-extension": "^1.5.0",
 		"tslib": "^2.4.1",
 		"typescript": "^4.9.3",
 		"vite": "^4.0.0"
