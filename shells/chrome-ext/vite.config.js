@@ -6,6 +6,12 @@ const config = {
 	plugins: [glsl(),sveltekit()],
 	resolve: {
 		preserveSymlinks: true
+	},
+	server: {
+		watch: {
+			usePolling: true,
+			interval: 1000
+		}
 	}
 };
 
