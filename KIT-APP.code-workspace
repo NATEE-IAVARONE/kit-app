@@ -1,6 +1,8 @@
 {
 	"folders": [
-		{ "path": ".", "name": "root"       },
+		{ "path": ".", 				"name": "root"  },
+		{ "path": "./apps", 	"name": "APP"   },
+		{ "path": "./shells", "name": "SHELL" },
 	],
 	"settings": {
     "[dockerfile]": {
