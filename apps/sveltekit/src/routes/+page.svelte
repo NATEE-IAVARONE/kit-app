@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
-	import Logo from '$lib/Logo.svelte';
 	import { browser } from '$app/environment';
+	import Button from '@smui/button';
+	import Loader from '$lib/Loader.svelte';
 
 	let desktop: string;
 
@@ -13,14 +13,18 @@
 	}
 
 	const agent = window.electron ? 'Electron' : 'Browser';
+
+	let isLoaded = false;
+	
+	function onLoaded() {
+		isLoaded = true;
+	}
 </script>
 
-<main>
-	<Logo />
+<Loader on:loaded={onLoaded}/>
 
-	<h1>Hello {agent}!</h1>
-
-	<Counter id="0" {agent} />
+<main class="{isLoaded ? 'fade' : ''}">
+	<Button>KIT</Button>
 
 	{#if desktop}
 		<br />
@@ -29,30 +33,23 @@
 	{/if}
 </main>
 
+
 <style>
-	:root {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-			Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	}
-
-	:global(body) {
-		margin: 0;
-		padding: 0;
-	}
-
 	main {
-		padding: 2em 1em 1em 1em;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 		text-align: center;
-		animation: fade 1s;
-		margin: 0 auto;
+		margin: 0;
+		opacity: 0;
 	}
-
+	main.fade {
+		animation: fade 1s;
+		animation-fill-mode:forwards;
+	}
 	@keyframes fade {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
+		from { opacity: 0; }
+		  to { opacity: 1; }
 	}
 </style>

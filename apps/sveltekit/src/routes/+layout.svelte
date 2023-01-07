@@ -1,22 +1,31 @@
+<link rel="stylesheet" href="/smui-dark.css" />
+<!-- Material Icons -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<!-- Roboto -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"/>
+<!-- Roboto Mono -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono" />
+
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	let ready: boolean = false;
+	let ready = false;
 	onMount(() => (ready = true));
 </script>
-
-<div class="dragbar" />
 
 {#if ready}
 	<slot />
 {/if}
 
 <style>
-	.dragbar {
-		-webkit-app-region: drag;
-		position: absolute;
-		z-index: 100;
-		height: 40px;
-		width: 100%;
+	:global(html) {
+		height: 100%;
+		min-width: 360px;
+		min-height: 600px;
+	}
+	:global(body) {
+		min-height: 100%;
+		margin: 0;
+		overflow: hidden;
 	}
 </style>
