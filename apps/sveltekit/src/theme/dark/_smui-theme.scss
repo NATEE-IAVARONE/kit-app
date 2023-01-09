@@ -1,19 +1,46 @@
 @use 'sass:color';
-
-@use '@material/theme/color-palette';
+@use '../color-palette';
 
 // Svelte Colors! (Dark Theme)
 @use '@material/theme/index' as theme with (
-  $primary: #ff3e00,
-  $secondary: color.scale(#676778, $whiteness: -10%),
-  $surface: color.adjust(color-palette.$grey-900, $blue: +4),
-  $background: #000,
+  $primary: color-palette.$grey-200,
+  $secondary: color-palette.$grey-400,
+  $surface: color-palette.$grey-700,
+  $on-surface: color-palette.$grey-50,
+  $background: color-palette.$grey-900,
   $error: color-palette.$red-700
 );
 
+@use '@material/layout-grid/variables' with (
+  $default-gutter: (
+    desktop: 8px,
+    tablet: 8px,
+    phone: 8px,
+  ),
+  $columns: (
+    desktop: 4,
+    tablet: 4,
+    phone: 4,
+  ),
+  $default-margin: (
+    desktop: 16px,
+    tablet: 16px,
+    phone: 16px,
+  )
+);
+
+@use '@material/typography' with (
+  $styles-headline6: (
+    font-size: 10px,
+    line-height: 16px
+  )
+);
+
+@use '@material/typography/mdc-typography';
+
 html,
 body {
-  background-color: #000;
+  background-color: theme.$background;
   color: theme.$on-surface;
 }
 
@@ -22,4 +49,8 @@ a {
 }
 a:visited {
   color: color.scale(#40b3ff, $lightness: -35%);
+}
+
+.mdc-card__media {
+  overflow: hidden;
 }
