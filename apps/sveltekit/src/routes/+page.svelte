@@ -27,6 +27,9 @@
 
 <main class="{isLoaded ? 'fade' : ''}">
 	<LayoutGrid>
+		<Cell span={4}>
+			<AnimateCanvas name="appHeader"/>
+		</Cell>
 		{#each Array(1) as _unused, _i}
 		<Cell span={2}>
 			<Card>
@@ -55,7 +58,21 @@
 			</Card>
 		</Cell>
 		{/each}
-		{#each Array(6) as _unused, _i}
+		{#each Array(1) as _unused, _i}
+		<Cell span={2}>
+			<Card>
+				<Media class="card-media-16x9" aspectRatio="16x9">
+					<MediaContent>
+						<AnimateCanvas name="chrome"/>
+					</MediaContent>
+					<h3 class="mdc-typography--headline6">
+						Chrome
+					</h3>
+				</Media>
+			</Card>
+		</Cell>
+		{/each}
+		{#each Array(5) as _unused, _i}
 			<Cell span={2}>
 				<Card>
 					<Media class="card-media-16x9" aspectRatio="16x9">

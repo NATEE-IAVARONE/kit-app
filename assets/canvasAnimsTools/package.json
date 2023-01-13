@@ -1,0 +1,14 @@
+{
+  "name": "canvasanimstools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "convToTS.js",
+  "scripts": {
+    "build": "node convtoTS.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^8.0.3"
+  }
+}
