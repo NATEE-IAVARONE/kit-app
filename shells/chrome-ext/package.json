@@ -8,7 +8,8 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"symlink:app": "ln -s /mnt/c/kit-app/apps/sveltekit/src/* /mnt/c/kit-app/shells/chrome-ext/src",
+		"symlink:src": "ln -s /mnt/c/kit-app/apps/sveltekit/src/* /mnt/c/kit-app/shells/chrome-ext/src",
+		"symlink:static": "ln -s /mnt/c/kit-app/apps/sveltekit/static/* /mnt/c/kit-app/shells/chrome-ext/static",
 		"prepare": "npm run smui-theme-dark",
 		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
 	},

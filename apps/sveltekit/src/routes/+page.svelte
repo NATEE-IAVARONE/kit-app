@@ -103,17 +103,20 @@
 		text-align: center;
 		margin: 0;
 		opacity: 0;
-	}
-	main.fade {
-		animation: fade 1s;
-		animation-fill-mode:forwards;
+		
+		&.fade {
+			animation: fade 1s;
+			animation-fill-mode: forwards;
+		}
 	}
 	@keyframes fade {
 		from { opacity: 0; }
 		  to { opacity: 1; }
 	}
-
 	.mdc-typography--headline6 {
 		margin: 0;
+	}
+	.mdc-card {
+		cursor: pointer;
 	}
 </style>

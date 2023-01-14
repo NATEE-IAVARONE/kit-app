@@ -1,6 +1,6 @@
 {
 	"folders": [
-		{ "path": ".", 				"name": "root"  },
+		{ "path": ".", 				"name": "ROOT"  },
 		{ "path": "./apps", 	"name": "APP"   },
 		{ "path": "./shells", "name": "SHELL" },
 		{ "path": "./assets", "name": "ASSET" },
@@ -21,7 +21,7 @@
 			{
 				"label": "install index",
 				"type": "shell",
-				"command": "sudo chmod +x ./install.sh && ./install.sh && npm test && npm start",
+				"command": "sudo chmod +x ./install.sh && ./install.sh",
 				"presentation": {
 					"reveal": "always",
 					"panel": "new"

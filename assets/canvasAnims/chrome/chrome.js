@@ -3,8 +3,8 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"chrome_atlas_1", frames: [[0,0,320,180],[322,0,320,180],[644,0,320,180],[966,0,320,180],[1288,0,320,180],[1610,0,320,180],[0,182,320,180],[322,182,320,180],[644,182,320,180],[966,182,320,180],[1288,182,320,180],[1610,182,320,180],[0,364,320,180],[322,364,320,180],[644,364,320,180],[966,364,320,180],[1288,364,320,180],[1610,364,320,180],[0,546,320,180],[322,546,320,180],[644,546,320,180],[966,546,320,180],[1288,546,320,180],[1610,546,320,180],[0,728,320,180],[322,728,320,180],[644,728,320,180],[966,728,320,180],[1288,728,320,180],[1610,728,320,180],[0,910,320,180],[322,910,320,180],[644,910,320,180],[966,910,320,180],[1288,910,320,180],[1610,910,320,180],[0,1092,320,180],[322,1092,320,180],[644,1092,320,180]]},
-		{name:"chrome_atlas_2", frames: [[0,0,320,180],[322,0,320,180],[644,0,320,180],[966,0,320,180],[1288,0,320,180],[1610,0,320,180],[0,182,320,180],[322,182,320,180],[644,182,320,180],[966,182,320,180],[1288,182,320,180],[1610,182,320,180],[0,364,320,180],[0,546,320,180],[0,728,320,180],[0,910,320,180],[0,1092,320,180],[0,1274,320,180],[0,1456,320,180],[0,1638,320,180],[0,1820,320,180],[322,364,320,180],[644,364,320,180],[966,364,320,180],[1288,364,320,180],[1610,364,320,180],[322,546,320,180],[644,546,320,180],[966,546,320,180],[1288,546,320,180],[1610,546,320,180],[322,728,320,180],[322,910,320,180],[322,1092,320,180],[322,1274,320,180],[322,1456,320,180],[322,1638,320,180],[322,1820,320,180],[644,728,320,180],[966,728,320,180],[1288,728,320,180],[1610,728,320,180],[644,910,320,180],[966,910,320,180],[1288,910,320,180],[1610,910,320,180],[644,1092,320,180],[644,1274,320,180],[644,1456,320,180],[644,1638,320,180],[644,1820,320,180],[966,1092,320,180],[1288,1092,320,180],[1610,1092,320,180],[966,1274,320,180],[966,1456,320,180],[966,1638,320,180],[966,1820,320,180],[1288,1274,320,180],[1610,1274,320,180],[1288,1456,320,180],[1610,1456,320,180],[1288,1638,320,180],[1288,1820,320,180],[1610,1638,320,180],[1610,1820,320,180]]}
+		{name:"chrome_atlas_1", frames: [[0,0,320,180],[322,0,320,180],[644,0,320,180],[966,0,320,180],[1288,0,320,180],[1610,0,320,180],[0,182,320,180],[322,182,320,180],[644,182,320,180],[966,182,320,180],[1288,182,320,180],[1610,182,320,180],[0,364,320,180],[0,546,320,180],[0,728,320,180],[0,910,320,180],[0,1092,320,180],[0,1274,320,180],[0,1456,320,180],[0,1638,320,180],[0,1820,320,180],[322,364,320,180],[644,364,320,180],[966,364,320,180],[1288,364,320,180],[1610,364,320,180],[322,546,320,180],[644,546,320,180],[966,546,320,180],[1288,546,320,180],[1610,546,320,180],[322,728,320,180],[322,910,320,180],[322,1092,320,180],[322,1274,320,180],[322,1456,320,180],[322,1638,320,180],[322,1820,320,180],[644,728,320,180],[966,728,320,180],[1288,728,320,180],[1610,728,320,180],[644,910,320,180],[966,910,320,180],[1288,910,320,180],[1610,910,320,180],[644,1092,320,180],[644,1274,320,180],[644,1456,320,180],[644,1638,320,180],[644,1820,320,180],[966,1092,320,180],[1288,1092,320,180],[1610,1092,320,180],[966,1274,320,180],[966,1456,320,180],[966,1638,320,180],[966,1820,320,180],[1288,1274,320,180],[1610,1274,320,180],[1288,1456,320,180],[1610,1456,320,180],[1288,1638,320,180],[1288,1820,320,180],[1610,1638,320,180],[1610,1820,320,180]]},
+		{name:"chrome_atlas_2", frames: [[0,0,320,180],[322,0,320,180],[644,0,320,180],[966,0,320,180],[1288,0,320,180],[1610,0,320,180],[0,182,320,180],[322,182,320,180],[644,182,320,180],[966,182,320,180],[1288,182,320,180],[1610,182,320,180],[0,364,320,180],[322,364,320,180],[644,364,320,180],[966,364,320,180],[1288,364,320,180],[1610,364,320,180],[0,546,320,180],[322,546,320,180],[644,546,320,180],[966,546,320,180],[1288,546,320,180],[1610,546,320,180],[0,728,320,180],[322,728,320,180],[644,728,320,180],[966,728,320,180],[1288,728,320,180],[1610,728,320,180],[0,910,320,180],[322,910,320,180],[644,910,320,180],[966,910,320,180],[1288,910,320,180],[1610,910,320,180],[0,1092,320,180],[322,1092,320,180],[644,1092,320,180]]}
 ];
 
 
@@ -29,735 +29,735 @@ lib.ssMetadata = [
 
 
 (lib.chrome0001 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0002 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0003 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0004 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0005 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0006 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0007 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0008 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0009 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0010 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(9);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0011 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(10);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0012 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(11);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0013 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(12);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0014 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(13);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0015 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(14);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0016 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(15);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0017 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(16);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0018 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(17);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0019 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(18);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0020 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(19);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0021 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(20);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0022 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(21);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0023 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(22);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0024 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(23);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0025 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(24);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0026 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(25);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0027 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(26);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0028 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(27);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0029 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(28);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0030 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(29);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0031 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(30);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0032 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(31);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0033 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(32);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0034 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(33);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0035 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(34);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0036 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(35);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0037 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(36);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0038 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(37);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0039 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(38);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0040 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(39);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0041 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(40);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0042 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(41);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0043 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(42);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0044 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(43);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0045 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(44);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0046 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(45);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0047 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(46);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0048 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(47);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0049 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(48);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0050 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(49);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0051 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(50);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0052 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(51);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0053 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(52);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0054 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(53);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0055 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(54);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0056 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(55);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0057 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(56);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0058 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(57);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0059 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(58);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0060 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(59);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0061 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(60);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0062 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(61);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0063 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(62);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0064 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(63);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0065 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(64);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0066 = function() {
-	this.initialize(ss["chrome_atlas_2"]);
+	this.initialize(ss["chrome_atlas_1"]);
 	this.gotoAndStop(65);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0067 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0068 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0069 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0070 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0071 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0072 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0073 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0074 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0075 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0076 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(9);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0077 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(10);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0078 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(11);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0079 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(12);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0080 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(13);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0081 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(14);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0082 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(15);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0083 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(16);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0084 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(17);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0085 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(18);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0086 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(19);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0087 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(20);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0088 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(21);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0089 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(22);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0090 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(23);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0091 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(24);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0092 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(25);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0093 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(26);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0094 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(27);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0095 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(28);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0096 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(29);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0097 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(30);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0098 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(31);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0099 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(32);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0100 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(33);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0101 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(34);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0102 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(35);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0103 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(36);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0104 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(37);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.chrome0105 = function() {
-	this.initialize(ss["chrome_atlas_1"]);
+	this.initialize(ss["chrome_atlas_2"]);
 	this.gotoAndStop(38);
 }).prototype = p = new cjs.Sprite();
 
@@ -1130,8 +1130,8 @@ lib.properties = {
 	color: "#0F0F0F",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/chrome_atlas_1.png?1673563847086", id:"chrome_atlas_1"},
-		{src:"images/chrome_atlas_2.png?1673563847087", id:"chrome_atlas_2"}
+		{src:"images/chrome_atlas_1.png?1673724618251", id:"chrome_atlas_1"},
+		{src:"images/chrome_atlas_2.png?1673724618252", id:"chrome_atlas_2"}
 	],
 	preloads: []
 };
