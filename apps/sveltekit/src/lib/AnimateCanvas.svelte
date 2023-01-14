@@ -21,18 +21,37 @@
     dom_overlay_container?: HTMLElement;
   }
 
+  async function launchChrome() {
+    const response = await fetch('http://localhost:5173/api/chrome', {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' }
+    });
+
+    const res = await response.json();
+
+    console.log({res});
+  }
+
+  function doNothing() {
+    console.log('No action');
+  }
+
+  let onClick = doNothing;
+
   onMount(async () => {
 		if (!browser) return;
 		
 		const {createjs} = await import('$lib/createjs');
 		const AdobeAn = {};
 
-    const [anim, initFn] = {
-      appHeader: [appHeader, init] as const,
-      association: [association, initAssociation] as const,
-      langSwitch: [langSwitch, init] as const,
-      chrome: [chrome, init] as const,
+    const [anim, initFn, onClickFn] = {
+      appHeader: [appHeader, init, doNothing] as const,
+      association: [association, initAssociation, doNothing] as const,
+      langSwitch: [langSwitch, init, doNothing] as const,
+      chrome: [chrome, init, launchChrome] as const,
     }[name];
+
+    onClick = onClickFn;
 
 		anim(createjs, AdobeAn, g);
 		initFn();
@@ -86,7 +105,7 @@
 	});
 </script>
 
-<div bind:this={g.anim_container}>
+<div bind:this={g.anim_container} on:click={onClick}>
   <canvas bind:this={g.canvas} class="{name}" width="160" height="90"></canvas>
   <section bind:this={g.dom_overlay_container}>
   </section>
