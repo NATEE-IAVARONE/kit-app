@@ -4,6 +4,7 @@
 		{ "path": "./apps", 	"name": "APP"   },
 		{ "path": "./shells", "name": "SHELL" },
 		{ "path": "./assets", "name": "ASSET" },
+		{ "path": "./shells/vscode-ext", "name": "VSCODE-EXT" },
 	],
 	"settings": {
     "[dockerfile]": {

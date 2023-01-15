@@ -21,8 +21,22 @@
     dom_overlay_container?: HTMLElement;
   }
 
+  const port = 5173;
+  const baseUrl = `http://localhost:${port}`;
+
   async function launchChrome() {
-    const response = await fetch('http://localhost:5173/api/chrome', {
+    const response = await fetch(`${baseUrl}/api/chrome`, {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' }
+    });
+
+    const res = await response.json();
+
+    console.log({res});
+  }
+
+  async function switchLang() {
+    const response = await fetch(`${baseUrl}/api/switchLang`, {
       method: 'GET',
       headers: { 'content-type': 'application/json' }
     });
@@ -47,7 +61,7 @@
     const [anim, initFn, onClickFn] = {
       appHeader: [appHeader, init, doNothing] as const,
       association: [association, initAssociation, doNothing] as const,
-      langSwitch: [langSwitch, init, doNothing] as const,
+      langSwitch: [langSwitch, init, switchLang] as const,
       chrome: [chrome, init, launchChrome] as const,
     }[name];
 
