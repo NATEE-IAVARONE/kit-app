@@ -1,6 +1,6 @@
 git config --global --add safe.directory '*'
 
-npm i -g cross-env
+npm i -g cross-env @vscode/vsce
 npm i
 
 git submodule update --init

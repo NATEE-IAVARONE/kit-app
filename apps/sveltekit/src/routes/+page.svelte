@@ -3,6 +3,7 @@
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import Loader from '$lib/Loader.svelte';
 	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
+	import Tool from '$lib/tools/Tool.svelte';
 
 	let desktop: string;
 
@@ -15,7 +16,7 @@
 
 	//const agent = window.electron ? 'Electron' : 'Browser';
 
-	let isLoaded = false;
+	let isLoaded = true;
 	
 	function onLoaded() {
 		isLoaded = true;
@@ -23,28 +24,16 @@
 
 </script>
 
-<Loader on:loaded={onLoaded}/>
+{#if !isLoaded}
+ <Loader on:loaded={onLoaded}/>
+{/if}
 
 <main class="{isLoaded ? 'fade' : ''}">
 	<LayoutGrid>
 		<Cell span={4}>
 			<AnimateCanvas name="appHeader"/>
 		</Cell>
-		{#each Array(1) as _unused, _i}
-		<Cell span={2}>
-			<Card>
-				<Media class="card-media-16x9" aspectRatio="16x9">
-					<MediaContent>
-						<AnimateCanvas name="langSwitch"/>
-					</MediaContent>
-					<h3 class="mdc-typography--headline6">
-						ENG ↔ ITA
-					</h3>
-				</Media>
-			</Card>
-		</Cell>
-		{/each}
-		{#each Array(1) as _unused, _i}
+		<Tool></Tool>
 		<Cell span={2}>
 			<Card>
 				<Media class="card-media-16x9" aspectRatio="16x9">
@@ -57,8 +46,6 @@
 				</Media>
 			</Card>
 		</Cell>
-		{/each}
-		{#each Array(1) as _unused, _i}
 		<Cell span={2}>
 			<Card>
 				<Media class="card-media-16x9" aspectRatio="16x9">
@@ -71,7 +58,6 @@
 				</Media>
 			</Card>
 		</Cell>
-		{/each}
 		{#each Array(5) as _unused, _i}
 			<Cell span={2}>
 				<Card>
