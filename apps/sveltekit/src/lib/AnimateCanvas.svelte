@@ -3,12 +3,11 @@
 	import { browser } from '$app/environment';
 
 	import { main as appHeader } from '$lib/canvas/appHeader';
-	import { main as association } from '$lib/canvas/testIDLocationAssociation';
+	import { main as locAssoc } from '$lib/canvas/testIDLocationAssociation';
 	import { main as langSwitch } from '$lib/canvas/langSwitch';
-	import { main as chrome } from '$lib/canvas/chrome';
+	import { main as chrome } from '@kit-tools/chrome/canvas';
 
-  export let name: 'association' | 'langSwitch' | 'appHeader' | 'chrome';
-
+  export let id: string;
   
   var stage, exportRoot, fnStartAnimation;
   const g: GlobalAnimateVars = {
@@ -25,7 +24,7 @@
   const baseUrl = `http://localhost:${port}`;
 
   async function launchChrome() {
-    const response = await fetch(`${baseUrl}/api/chrome`, {
+    const response = await fetch(`${baseUrl}/api/tools/chrome`, {
       method: 'GET',
       headers: { 'content-type': 'application/json' }
     });
@@ -60,10 +59,10 @@
 
     const [anim, initFn, onClickFn] = {
       appHeader: [appHeader, init, doNothing] as const,
-      association: [association, initAssociation, doNothing] as const,
+      locAssoc: [locAssoc, initAssociation, doNothing] as const,
       langSwitch: [langSwitch, init, switchLang] as const,
       chrome: [chrome, init, launchChrome] as const,
-    }[name];
+    }[id];
 
     onClick = onClickFn;
 
@@ -120,15 +119,14 @@
 </script>
 
 <div bind:this={g.anim_container} on:click={onClick}>
-  <canvas bind:this={g.canvas} class="{name}" width="160" height="90"></canvas>
-  <section bind:this={g.dom_overlay_container}>
-  </section>
+  <canvas bind:this={g.canvas} class="{id}" width="160" height="90"></canvas>
+  <section bind:this={g.dom_overlay_container}></section>
 </div>
 
 <style>
   div {
-    width:160px;
-    height:90px;
+    width: 160px;
+    height: 90px;
   }
   canvas:not(.appHeader) {
     position: absolute;

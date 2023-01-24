@@ -5,17 +5,6 @@
 	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
 	import Tool from '$lib/tools/Tool.svelte';
 
-	let desktop: string;
-
-	// if (window.electron && browser) {
-	// 	window.electron.receive('from-main', (data: any) => {
-	// 		desktop = `Received Message "${data}" from Electron`;
-	// 		console.log(desktop);
-	// 	});
-	// }
-
-	//const agent = window.electron ? 'Electron' : 'Browser';
-
 	let isLoaded = true;
 	
 	function onLoaded() {
@@ -31,52 +20,15 @@
 <main class="{isLoaded ? 'fade' : ''}">
 	<LayoutGrid>
 		<Cell span={4}>
-			<AnimateCanvas name="appHeader"/>
+			<AnimateCanvas id="appHeader"/>
 		</Cell>
-		<Tool></Tool>
-		<Cell span={2}>
-			<Card>
-				<Media class="card-media-16x9" aspectRatio="16x9">
-					<MediaContent>
-						<AnimateCanvas name="association"/>
-					</MediaContent>
-					<h3 class="mdc-typography--headline6">
-						TestIDs → Locations
-					</h3>
-				</Media>
-			</Card>
-		</Cell>
-		<Cell span={2}>
-			<Card>
-				<Media class="card-media-16x9" aspectRatio="16x9">
-					<MediaContent>
-						<AnimateCanvas name="chrome"/>
-					</MediaContent>
-					<h3 class="mdc-typography--headline6">
-						Chrome
-					</h3>
-				</Media>
-			</Card>
-		</Cell>
+		<Tool id="langSwitch"></Tool>
+		<Tool id="locAssoc"></Tool>
+		<Tool id="chrome"></Tool>
 		{#each Array(5) as _unused, _i}
-			<Cell span={2}>
-				<Card>
-					<Media class="card-media-16x9" aspectRatio="16x9">
-						<!-- <img src="/store.png" alt="store" style="position: absolute; top: 0; left: 0; width: 100%"> -->
-						<h3 class="mdc-typography--headline6">
-							....
-						</h3>
-					</Media>
-				</Card>
-			</Cell>
+			<Tool></Tool>
 		{/each}
 	</LayoutGrid>
-
-	{#if desktop}
-		<br />
-		<br />
-		{desktop}
-	{/if}
 </main>
 
 
