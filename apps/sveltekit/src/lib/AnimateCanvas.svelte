@@ -1,11 +1,8 @@
 <script lang="ts">
+	import { find } from 'lodash';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-
-	import { main as appHeader } from '$lib/canvas/appHeader';
-	import { main as locAssoc } from '$lib/canvas/testIDLocationAssociation';
-	import { main as langSwitch } from '$lib/canvas/langSwitch';
-	import { main as chrome } from '@kit-tools/chrome/canvas';
+  import { tools as toolsStore } from '$lib/store/tools';
 
   export let id: string;
   
@@ -51,23 +48,40 @@
 
   let onClick = doNothing;
 
+  async function getCanvas(id: string) {
+    const response = await fetch(`${baseUrl}/api/tools/${id}/canvas`, {
+      method: 'GET',
+      headers: { 'content-type': 'text/plain' }
+    });
+
+    const js = await response.text();
+    return await import('data:text/javascript;charset=utf-8,' + encodeURIComponent(js));
+  }
+
   onMount(async () => {
 		if (!browser) return;
 		
 		const {createjs} = await import('$lib/createjs');
 		const AdobeAn = {};
 
-    const [anim, initFn, onClickFn] = {
-      appHeader: [appHeader, init, doNothing] as const,
-      locAssoc: [locAssoc, initAssociation, doNothing] as const,
-      langSwitch: [langSwitch, init, switchLang] as const,
-      chrome: [chrome, init, launchChrome] as const,
-    }[id];
+    // let [anim, initFn, onClickFn] = {
+    //   appHeader: [appHeader, init, doNothing] as const,
+    //   locAssoc: [locAssoc, initAssociation, doNothing] as const,
+    //   langSwitch: [langSwitch, init, switchLang] as const,
+    //   chrome: [chrome, init, launchChrome] as const,
+    // }[id];
+
+    toolsStore.subscribe(async tools => {
+      const tool = find(tools, {id});
+      if (!tool) return;
+
+      (await getCanvas(id)).main(createjs, AdobeAn, g);
+		  initFn();
+    });
+    let initFn = init;
+    let onClickFn = doNothing;
 
     onClick = onClickFn;
-
-		anim(createjs, AdobeAn, g);
-		initFn();
 
 		/* ASSOCIATION */
 		function initAssociation() {

@@ -1,0 +1,11 @@
+{
+  "id": "app-header",
+  "name": "@kit-tools/app-header",
+  "title": "app header",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "cardSizes": [4],
+  "author": "NATEE",
+  "license": "ISC"
+}

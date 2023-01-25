@@ -1,9 +1,7 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-export async function GET(req) {
-	console.log({req});	
-	
+export async function GET(req) {	
 	const { params } = req;
 	const { tool_id } = params;
 	

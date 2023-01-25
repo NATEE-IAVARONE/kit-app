@@ -1,0 +1,11 @@
+{
+  "id": "lang-switch",
+  "name": "@kit-tools/lang-switch",
+  "title": "ENG ↔ ITA",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "cardSizes": [2, 4],
+  "author": "NATEE",
+  "license": "ISC"
+}

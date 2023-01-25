@@ -1,33 +1,20 @@
 <script lang="ts">
   import { find, last } from 'lodash';
+  import { derived } from 'svelte/store';
 	import Card, { Media, MediaContent } from '@smui/card';
 	import { Cell } from '@smui/layout-grid';
 	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
+  import { tools as toolsStore } from '$lib/store/tools';
 
   const EMPTY = 'empty';
 
   export let id = EMPTY;
 
-  const tools: Partial<Tool>[] = [
-    {
-      id: EMPTY,
-      title: '----',
-      cardSizes: [2]
-    },
-    {
-      id: 'langSwitch',
-      title: 'ENG ↔ ITA',
-    },
-    {
-      id: 'locAssoc',
-      title: 'TestIDs → Locations',
-      cardSizes: [2, 4, 6],
-    },
-    {
-      id: 'chrome',
-      title: 'Chrome',
-    }
-  ];
+  const emptyTool = {
+    id: EMPTY,
+    title: '----',
+    cardSizes: [2]
+  };
 
   const defToolProps = {
     cardSizes: [2, 4],
@@ -36,29 +23,28 @@
     }
   }
 
+  const tool = derived(toolsStore, $tools => ({
+    ...defToolProps,
+    ...find($tools, {id}) ?? emptyTool,
+  }));
+
   interface Tool {
     id: string;
     title: string;
     cardSizes: number[];
-    onResize: (from: number, to: number) => void;
+    onResize?: (from: number, to: number) => void;
   }
 
-  const tool = {
-    ...defToolProps,
-    ...find(tools, {id}),
-  } as Tool;
-  let span: number;
+  let span = 2;
   let canvasSettings = {
     visible: true,
   };
 
-  toggleSpan();
-
   function toggleSpan() {
-    const cs = tool.cardSizes;
+    const cs = $tool.cardSizes;
     const from = cs.indexOf(span);
     const to = span === last(cs) ? 0 : from + 1;
-    tool.onResize?.(cs[from], span = cs[to]);
+    $tool.onResize?.(cs[from], span = cs[to]);
   }
 
   function onRightClick(e: Event) {
@@ -76,7 +62,7 @@
         {/if}
       </MediaContent>
       <h3 class="mdc-typography--headline6">
-        {tool.title}
+        {$tool.title}
       </h3>
     </Media>
   </Card>

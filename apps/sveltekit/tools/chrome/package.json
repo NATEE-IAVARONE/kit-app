@@ -1,0 +1,10 @@
+{
+  "id": "chrome",
+  "name": "@kit-tools/chrome",
+  "title": "Chrome",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [2, 4, 6],
+  "author": "NATEE",
+  "license": "ISC"
+}

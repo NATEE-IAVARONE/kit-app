@@ -1,0 +1,11 @@
+{
+  "id": "loc-assoc",
+  "name": "@kit-tools/loc-assoc",
+  "title": "TestIDs → Locations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "cardSizes": [2, 6],
+  "author": "NATEE",
+  "license": "ISC"
+}
