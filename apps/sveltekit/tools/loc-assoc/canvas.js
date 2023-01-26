@@ -1,4 +1,9 @@
-export const main = (createjs, AdobeAn, g) =>
+export const setDeps = (deps) => {
+    createjs = deps.createjs;
+    ({ canvas, anim_container, dom_overlay_container } = deps.g);
+  };
+
+export const main = (createjs, g) =>
 (function (cjs, an) {
 
 var p; // shortcut to reference prototypes
@@ -89,7 +94,7 @@ if (reversed == null) { reversed = false; }
 		frequency is the number of the times event should be triggered.
 		*/
 		var frequency = 3;
-		g.stage.enableMouseOver(frequency);
+		stage.enableMouseOver(frequency);
 		this.parent.canvas.addEventListener("mouseover", fl_MouseOverHandler.bind(this));
 		
 		function fl_MouseOverHandler() {
@@ -326,17 +331,17 @@ an.makeResponsive = function(isResp, respDim, isScale, scaleType, domContainers)
 			container.style.width = w * sRatio + 'px';				
 			container.style.height = h * sRatio + 'px';			
 		});
-		g.stage.scaleX = pRatio*sRatio;			
-		g.stage.scaleY = pRatio*sRatio;
+		stage.scaleX = pRatio*sRatio;			
+		stage.scaleY = pRatio*sRatio;
 		lastW = iw; lastH = ih; lastS = sRatio;            
-		g.stage.tickOnUpdate = false;            
-		g.stage.update();            
-		g.stage.tickOnUpdate = true;		
+		stage.tickOnUpdate = false;            
+		stage.update();            
+		stage.tickOnUpdate = true;		
 	}
 }
 an.handleSoundStreamOnTick = function(event) {
 	if(!event.paused){
-		var stageChild = g.stage.getChildAt(0);
+		var stageChild = stage.getChildAt(0);
 		if(!stageChild.paused || stageChild.ignorePause){
 			stageChild.syncStreamSounds();
 		}
@@ -366,10 +371,10 @@ var createjs, AdobeAn;
 /************* HTML *************/
 
 var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
-function init() {
-	canvas = document.getElementById("canvas");
-	anim_container = document.getElementById("animation_container");
-	dom_overlay_container = document.getElementById("dom_overlay_container");
+export const init = (createjs) => {
+
+
+
 	var comp=AdobeAn.getComposition("82D64AE21E87C442B698A0280CCCADEA");
 	var lib=comp.getLibrary();
 	createjs.MotionGuidePlugin.install();
@@ -379,7 +384,7 @@ function handleComplete(evt,comp) {
 	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
 	var lib=comp.getLibrary();
 	var ss=comp.getSpriteSheet();
-	exportRoot = new lib.testIDLocationAssociation();
+  exportRoot = new lib.stageContent();
 	stage = new lib.Stage(canvas);	
 	//Registers the "tick" event listener.
 	fnStartAnimation = function() {

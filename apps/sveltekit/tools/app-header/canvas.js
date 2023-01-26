@@ -1,4 +1,9 @@
-export const main = (createjs, AdobeAn, g) =>
+export const setDeps = (deps) => {
+    createjs = deps.createjs;
+    ({ canvas, anim_container, dom_overlay_container } = deps.g);
+  };
+
+export const main = (createjs, g) =>
 (function (cjs, an) {
 
 var p; // shortcut to reference prototypes
@@ -941,17 +946,17 @@ if (reversed == null) { reversed = false; }
 		this.stop();
 		
 		this.clickArea.on('rollover', () => {
-		  g.stage.isMouseOver || this.play();
-		  g.stage.isMouseOver = true;
+		  stage.isMouseOver || this.play();
+		  stage.isMouseOver = true;
 		});
 		
 		this.clickArea.on('rollout', () => {
 		  this.currentFrame && this.play();
-		  g.stage.isMouseOver = false;
+		  stage.isMouseOver = false;
 		});
 	}
 	this.frame_9 = function() {
-		g.stage.isMouseOver && this.stop();
+		stage.isMouseOver && this.stop();
 	}
 	this.frame_19 = function() {
 		this.gotoAndStop(0);
@@ -1074,7 +1079,7 @@ if (reversed == null) { reversed = false; }
 			this.isSingleFrame = true;
 		}
 		const frequency = 3;
-		g.stage.enableMouseOver(frequency);
+		stage.enableMouseOver(frequency);
 		
 		const that = this;
 		
@@ -1234,17 +1239,17 @@ an.makeResponsive = function(isResp, respDim, isScale, scaleType, domContainers)
 			container.style.width = w * sRatio + 'px';				
 			container.style.height = h * sRatio + 'px';			
 		});
-		g.stage.scaleX = pRatio*sRatio;			
-		g.stage.scaleY = pRatio*sRatio;
+		stage.scaleX = pRatio*sRatio;			
+		stage.scaleY = pRatio*sRatio;
 		lastW = iw; lastH = ih; lastS = sRatio;            
-		g.stage.tickOnUpdate = false;            
-		g.stage.update();            
-		g.stage.tickOnUpdate = true;		
+		stage.tickOnUpdate = false;            
+		stage.update();            
+		stage.tickOnUpdate = true;		
 	}
 }
 an.handleSoundStreamOnTick = function(event) {
 	if(!event.paused){
-		var stageChild = g.stage.getChildAt(0);
+		var stageChild = stage.getChildAt(0);
 		if(!stageChild.paused || stageChild.ignorePause){
 			stageChild.syncStreamSounds();
 		}
@@ -1274,10 +1279,10 @@ var createjs, AdobeAn;
 /************* HTML *************/
 
 var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
-function init() {
-	canvas = document.getElementById("canvas");
-	anim_container = document.getElementById("animation_container");
-	dom_overlay_container = document.getElementById("dom_overlay_container");
+export const init = (createjs) => {
+
+
+
 	var comp=AdobeAn.getComposition("82D64AE21E87C442B698A0280CCCADEA");
 	var lib=comp.getLibrary();
 	var loader = new createjs.LoadQueue(false);
@@ -1296,10 +1301,10 @@ function handleComplete(evt,comp) {
 	var ss=comp.getSpriteSheet();
 	var queue = evt.target;
 	var ssMetadata = lib.ssMetadata;
-	for(i=0; i<ssMetadata.length; i++) {
+	for(var i=0; i<ssMetadata.length; i++) {
 		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
 	}
-	exportRoot = new lib.appHeader();
+  exportRoot = new lib.stageContent();
 	stage = new lib.Stage(canvas);	
 	//Registers the "tick" event listener.
 	fnStartAnimation = function() {

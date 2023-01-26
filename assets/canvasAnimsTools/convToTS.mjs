@@ -10,7 +10,7 @@ const srcFiles = glob.sync(srcPattern, {});
   
 console.log({srcFiles});
 
-const firstLine = `export const main = (createjs, AdobeAn, g) =>`;
+const firstLine = `export const main = (createjs, g) =>`;
 
 for (const srcFile of srcFiles) {
 
@@ -22,7 +22,10 @@ for (const srcFile of srcFiles) {
 
   const fileData = fs.readFileSync(srcFile, {encoding:'utf8', flag:'r'});
 
-  let newFileData = '';
+  let newFileData = `export const setDeps = (deps) => {
+    createjs = deps.createjs;
+    ({ canvas, anim_container, dom_overlay_container } = deps.g);
+  };\n\n`;
   
   const nl = '\n';
   const fileLines = fileData.split(nl);
@@ -39,7 +42,7 @@ for (const srcFile of srcFiles) {
     if (nthLinesToDelete.includes(nthLine)) continue;
 
     fileLine = fileLine.replace('src:"images/', `src:"canvasImages/${canvasName}/`);
-    fileLine = fileLine.replaceAll('stage.', 'g.stage.');
+    // fileLine = fileLine.replaceAll('stage.', 'g.stage.');
 
     newFileData += fileLine;
     if (fileLine.includes('// stage content:')) {
@@ -64,8 +67,16 @@ for (const srcFile of srcFiles) {
       if (fileLine.startsWith('</script>')) {
         inScriptTag = false;
         break;
-      };
-      newFileData += fileLine + nl;
+      } else if (fileLine.startsWith('function init() {')) {
+        newFileData += 'export const init = (createjs) => {' + nl;
+      } else if (fileLine.includes('exportRoot = new lib.')) {
+        newFileData += '  exportRoot = new lib.stageContent();' + nl;
+      } else if (fileLine.includes('document.getElementById(')) {
+        newFileData += nl;
+      } else {
+        fileLine = fileLine.replaceAll('for(i=0;', 'for(var i=0;');
+        newFileData += fileLine + nl;
+      }
     } else if (fileLine.startsWith('<script>')) inScriptTag = true;
   }
 

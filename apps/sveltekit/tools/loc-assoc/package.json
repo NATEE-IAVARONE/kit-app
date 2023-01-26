@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "cardSizes": [2, 6],
+  "cardSizes": [2, 4, 6],
   "author": "NATEE",
   "license": "ISC"
 }

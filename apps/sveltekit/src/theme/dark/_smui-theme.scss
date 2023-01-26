@@ -1,7 +1,7 @@
 @use 'sass:color';
+@use '../darkly-variables';
 @use '../color-palette';
 
-// Svelte Colors! (Dark Theme)
 @use '@material/theme/index' as theme with (
   $primary: color-palette.$grey-200,
   $secondary: color-palette.$grey-400,
@@ -31,17 +31,21 @@
 
 @use '@material/typography' with (
   $styles-headline6: (
-    font-size: 10px,
+    font-size: 11px,
     line-height: 16px
   )
 );
 
 @use '@material/typography/mdc-typography';
 
+@use 'bootstrap/scss/bootstrap';
+@use 'formiojs/dist/formio.form.css';
+
 html,
 body {
   background-color: theme.$background;
   color: theme.$on-surface;
+  font-size: 11px;
 }
 
 a {
@@ -54,3 +58,4 @@ a:visited {
 .mdc-card__media {
   overflow: hidden;
 }
+

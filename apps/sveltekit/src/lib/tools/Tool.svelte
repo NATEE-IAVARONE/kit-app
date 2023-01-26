@@ -5,11 +5,14 @@
 	import { Cell } from '@smui/layout-grid';
 	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
   import { tools as toolsStore } from '$lib/store/tools';
+  import FormRenderer from './FormRenderer.svelte';
 
   const EMPTY = 'empty';
 
   export let id = EMPTY;
 
+  let span = 2;
+  
   const emptyTool = {
     id: EMPTY,
     title: '----',
@@ -20,13 +23,24 @@
     cardSizes: [2, 4],
     onResize: (from: number, to: number) => {
       canvasSettings.visible = to === 2;
+      formSettings.visible = to !== 2;
+
+      if (!formSettings.isCreated && formSettings.visible) {
+        formSettings.isCreated = true;
+      }
     }
   }
 
-  const tool = derived(toolsStore, $tools => ({
-    ...defToolProps,
-    ...find($tools, {id}) ?? emptyTool,
-  }));
+  const tool = derived(toolsStore, $tools => {
+    const t = find($tools, {id}) ?? emptyTool;
+
+    span = t.cardSizes[0];
+    
+    return {
+      ...defToolProps,
+      ...t,
+    };
+  });
 
   interface Tool {
     id: string;
@@ -35,9 +49,13 @@
     onResize?: (from: number, to: number) => void;
   }
 
-  let span = 2;
   let canvasSettings = {
     visible: true,
+  };
+
+  let formSettings = {
+    visible: true,
+    isCreated: false,
   };
 
   function toggleSpan() {
@@ -57,8 +75,9 @@
   <Card on:contextmenu={onRightClick}>
     <Media class="card-media-16x9" aspectRatio="16x9">
       <MediaContent>
-        {#if canvasSettings.visible}
-          <AnimateCanvas id="{id}"/>
+        <AnimateCanvas id="{id}" visible={canvasSettings.visible}/>
+        {#if formSettings.isCreated}
+          <FormRenderer id="{id}" visible={formSettings.visible}/>
         {/if}
       </MediaContent>
       <h3 class="mdc-typography--headline6">

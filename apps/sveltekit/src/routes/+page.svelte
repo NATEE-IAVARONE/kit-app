@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Card, { Media, MediaContent } from '@smui/card';
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import Loader from '$lib/Loader.svelte';
 	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
 	import Tool from '$lib/tools/Tool.svelte';
+  import { tools as toolsStore } from '$lib/store/tools';
 
-	let isLoaded = true;
+	let isLoaded = false;
 	
 	function onLoaded() {
 		isLoaded = true;
@@ -20,11 +20,13 @@
 <main class="{isLoaded ? 'fade' : ''}">
 	<LayoutGrid>
 		<Cell span={4}>
-			<AnimateCanvas id="appHeader"/>
+			<AnimateCanvas id="app-header"/>
 		</Cell>
-		<Tool id="langSwitch"></Tool>
-		<Tool id="locAssoc"></Tool>
-		<Tool id="chrome"></Tool>
+		{#each $toolsStore as tool}
+			{#if tool.id !== 'app-header'}
+				<Tool id={tool.id}></Tool>
+			{/if}
+		{/each}
 		{#each Array(5) as _unused, _i}
 			<Tool></Tool>
 		{/each}
