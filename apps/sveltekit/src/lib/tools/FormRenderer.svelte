@@ -23,7 +23,7 @@
   onMount(async () => {
     const { schema } = await getForm(id);
 
-    Formio.createForm(container, schema);
+    Formio.createForm(container, schema());
   });
 
 </script>

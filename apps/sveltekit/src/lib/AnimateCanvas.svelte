@@ -72,52 +72,6 @@
 		  init(createjs);
     });
 
-		/* ASSOCIATION */
-		// function initAssociation() {
-		// 	var comp=AdobeAn.getComposition('82D64AE21E87C442B698A0280CCCADEA');
-		// 	var lib=comp.getLibrary();
-		// 	createjs.MotionGuidePlugin.install();
-		// 	handleComplete({},comp);
-		// }
-    // function init() {
-    //   var comp=AdobeAn.getComposition("82D64AE21E87C442B698A0280CCCADEA");
-    //   var lib=comp.getLibrary();
-    //   var loader = new createjs.LoadQueue(false);
-    //   loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
-    //   loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
-    //   var lib=comp.getLibrary();
-    //   loader.loadManifest(lib.properties.manifest);
-    // }
-
-
-    // function handleFileLoad(evt, comp) {
-    //   var images=comp.getImages();	
-    //   if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
-    // }
-    
-    // function handleComplete(evt,comp) {
-    //   //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
-    //   var lib=comp.getLibrary();
-    //   var ss=comp.getSpriteSheet();
-    //   var queue = evt.target;
-    //   var ssMetadata = lib.ssMetadata || [];
-    //   for(let i=0; i<ssMetadata.length; i++) {
-    //     ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
-    //   }
-    //   g.exportRoot = new lib.stageContent();
-    //   g.stage = new lib.Stage(g.canvas);	
-    //   //Registers the "tick" event listener.
-    //   g.fnStartAnimation = function() {
-    //     g.stage.addChild(g.exportRoot);
-    //     createjs.Ticker.framerate = lib.properties.fps;
-    //     createjs.Ticker.addEventListener("tick", g.stage);
-    //   }	    
-    //   //Code to support hidpi screens and responsive scaling.
-    //   AdobeAn.makeResponsive(false,'both',false,1,[g.canvas,g.anim_container,g.dom_overlay_container]);	
-    //   AdobeAn.compositionLoaded(lib.properties.id);
-    //   g.fnStartAnimation();
-    // }
-
 	});
 </script>
 

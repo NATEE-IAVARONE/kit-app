@@ -17,8 +17,6 @@ export async function GET(req) {
 
 	const tool = require(packageName);
 	const toolNodeScript = require(`${packageName}/node.js`);
-
-	console.log({ tool_id, tool, toolNodeScript });
 	
 	const { GET: nodeGET } = toolNodeScript;
 	const res = nodeGET(req);
