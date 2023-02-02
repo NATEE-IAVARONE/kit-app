@@ -9,10 +9,14 @@
 	<slot />
 {/if}
 
-<style>
+<style lang="scss">
+	$margin: 4px;
+	$card-size: 160px;
+	$main-width: calc(4 * $margin + 2 * $card-size);
+
 	:global(html) {
 		height: 100%;
-		min-width: 360px;
+		min-width: $main-width;
 		min-height: 600px;
 	}
 	:global(body) {
@@ -21,7 +25,7 @@
 		overflow: hidden;
 	}
 	:global(main) {
-		width: 360px;
+		width: $main-width;
 		overflow: hidden;
 	}
 </style>

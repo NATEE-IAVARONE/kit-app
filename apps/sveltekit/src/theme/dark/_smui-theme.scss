@@ -41,6 +41,10 @@
 @use 'bootstrap/scss/bootstrap';
 @use 'formiojs/dist/formio.form.css';
 
+
+@use 'gridstack/dist/src/gridstack';
+@use 'gridstack/dist/src/gridstack-extra';
+
 html,
 body {
   background-color: theme.$background;

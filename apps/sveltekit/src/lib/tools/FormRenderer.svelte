@@ -17,7 +17,8 @@
     });
 
     const js = await response.text();
-    return await import('data:text/javascript;charset=utf-8,' + encodeURIComponent(js));
+    
+    return await import(/* @vite-ignore */'data:text/javascript;charset=utf-8,' + encodeURIComponent(js));
   }
 
   onMount(async () => {
@@ -37,12 +38,12 @@
 
 <style>
   div {
-    position: absolute;
+    /* position: absolute; */
     opacity: 0;
     transition: 0.2s;
   }
   .visible {
-    position: relative;
+    /* position: relative; */
     opacity: 1; 
   }
 </style>

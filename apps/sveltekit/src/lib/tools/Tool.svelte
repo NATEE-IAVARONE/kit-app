@@ -1,11 +1,10 @@
 <script lang="ts">
   import { find, last } from 'lodash';
   import { derived } from 'svelte/store';
-	import Card, { Media, MediaContent } from '@smui/card';
-	import { Cell } from '@smui/layout-grid';
 	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
   import { tools as toolsStore } from '$lib/store/tools';
   import FormRenderer from './FormRenderer.svelte';
+	import { afterUpdate, createEventDispatcher } from 'svelte';
 
   const EMPTY = 'empty';
 
@@ -69,9 +68,22 @@
     toggleSpan();
     e.preventDefault();
   }
+
+  const dispatch = createEventDispatcher();
+  afterUpdate(() => dispatch('afterUpdate'));
 </script>
 
-<Cell span={span}>
+<section on:contextmenu={onRightClick} class="grid-stack-item-content">
+  <AnimateCanvas id="{id}" visible={canvasSettings.visible}/>
+  {#if formSettings.isCreated}
+    <FormRenderer id="{id}" visible={formSettings.visible}/>
+  {/if}
+  <h3 class="mdc-typography--headline6">
+    {$tool.title}
+  </h3>
+</section>
+
+<!-- <Cell span={span}>
   <Card on:contextmenu={onRightClick}>
     <Media class="card-media-16x9" aspectRatio="16x9">
       <MediaContent>
@@ -85,13 +97,16 @@
       </h3>
     </Media>
   </Card>
-</Cell>
+</Cell> -->
 
 <style lang="scss">
 	.mdc-typography--headline6 {
 		margin: 0;
 	}
-	.mdc-card {
+  .grid-stack-item-content {
 		cursor: pointer;
+		background-color: #242424;
+		border-radius: 4px;
+		overflow: hidden;
 	}
 </style>

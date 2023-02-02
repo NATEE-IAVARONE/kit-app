@@ -1136,8 +1136,8 @@ lib.properties = {
 	color: "#0F0F0F",
 	opacity: 1.00,
 	manifest: [
-		{src:"canvasImages/chrome/chrome_atlas_1.png?1673724618251", id:"chrome_atlas_1"},
-		{src:"canvasImages/chrome/chrome_atlas_2.png?1673724618252", id:"chrome_atlas_2"}
+		{src:"api/tools/chrome/canvas/images/chrome_atlas_1.png?1673724618251", id:"chrome_atlas_1"},
+		{src:"api/tools/chrome/canvas/images/chrome_atlas_2.png?1673724618252", id:"chrome_atlas_2"}
 	],
 	preloads: []
 };

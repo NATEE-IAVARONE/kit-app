@@ -41,7 +41,7 @@ for (const srcFile of srcFiles) {
 
     if (nthLinesToDelete.includes(nthLine)) continue;
 
-    fileLine = fileLine.replace('src:"images/', `src:"canvasImages/${canvasName}/`);
+    fileLine = fileLine.replace('src:"images/', `src:"api/tools/${canvasName}/canvas/images/`);
     // fileLine = fileLine.replaceAll('stage.', 'g.stage.');
 
     newFileData += fileLine;
