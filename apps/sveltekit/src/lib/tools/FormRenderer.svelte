@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-  import { Formio } from 'formiojs';
+
+  export const ssr = false;
 
   export let id: string;
   export let visible = false;
@@ -22,6 +23,7 @@
   }
 
   onMount(async () => {
+    const { Formio } = await import(/* @vite-ignore */'formiojs');
     const { schema } = await getForm(id);
 
     Formio.createForm(container, schema());

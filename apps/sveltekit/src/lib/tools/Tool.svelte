@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { find, last } from 'lodash';
+  import { find, last } from 'lodash-es';
   import { derived } from 'svelte/store';
 	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
   import { tools as toolsStore } from '$lib/store/tools';

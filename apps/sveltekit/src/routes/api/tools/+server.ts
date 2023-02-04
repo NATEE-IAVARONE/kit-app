@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'module';
-import { omit } from 'lodash';
+import { omit } from 'lodash-es';
 
 const require = createRequire(import.meta.url);
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { find } from 'lodash';
+	import { find } from 'lodash-es';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
   import { tools as toolsStore } from '$lib/store/tools';
@@ -40,15 +40,7 @@
   // }
 
   async function getCanvas(id: string) {
-    const endpoint = `${baseUrl}/api/tools/${id}/canvas`;
-
-    const response = await fetch(endpoint, {
-      method: 'GET',
-      headers: { 'content-type': 'text/plain' }
-    });
-
-    const js = await response.text();
-    return await import(/* @vite-ignore */'data:text/javascript;charset=utf-8,' + encodeURIComponent(js));
+    return await import(/* @vite-ignore */`/api/tools/${id}/canvas.js`);
   }
 
   onMount(async () => {

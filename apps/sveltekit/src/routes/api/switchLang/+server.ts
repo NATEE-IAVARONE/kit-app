@@ -1,10 +1,10 @@
 import CP from 'node:child_process';
-import _ from 'lodash';
+import { defaultTo } from 'lodash-es';
 
 export async function GET({ url }) {
 	const allowed = ['it-IT', 'en-EN'];
 
-	const lang = _.defaultTo(url.searchParams.get('lang'), allowed[0]);
+	const lang = defaultTo(url.searchParams.get('lang'), allowed[0]);
 
 	const psScript = `Set-WinUserLanguageList -Force '${lang}'`;
 

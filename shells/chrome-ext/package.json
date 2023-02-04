@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "vite build && node ./copyToolsToBuild.js",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -13,6 +13,21 @@
 		"prepare": "npm run smui-theme-dark",
 		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
 	},
+	"dependencies": {
+		"@kit-tools/app-header": "file:../../apps/sveltekit/tools/app-header",
+		"@kit-tools/chrome": "file:../../apps/sveltekit/tools/chrome",
+		"@kit-tools/lang-switch": "file:../../apps/sveltekit/tools/lang-switch",
+		"@kit-tools/loc-assoc": "file:../../apps/sveltekit/tools/loc-assoc",
+		"bootstrap": "^4.6.0",
+		"createjs": "^1.0.1",
+		"createjs-module": "^0.8.3",
+		"formiojs": "^4.14.12",
+		"gridstack": "^7.2.2",
+		"lodash-es": "^4.17.21",
+		"smui-theme": "^7.0.0-beta.0",
+		"vite-plugin-glsl": "^1.0.2",
+		"winston": "^3.8.2"
+	},
 	"devDependencies": {
 		"@material/typography": "^14.0.0",
 		"@smui/button": "^7.0.0-beta.0",
@@ -20,6 +35,9 @@
 		"@smui/layout-grid": "^7.0.0-beta.0",
 		"@sveltejs/adapter-auto": "^1.0.0-next.90",
 		"@sveltejs/kit": "^1.0.0-next.587",
+		"@types/createjs": "^0.0.29",
+		"@types/lodash-es": "^4.17.6",
+		"@types/node": "^18.11.18",
 		"svelte": "^3.54.0",
 		"svelte-check": "^2.9.2",
 		"sveltekit-adapter-chrome-extension": "^1.5.0",
@@ -27,9 +45,5 @@
 		"typescript": "^4.9.3",
 		"vite": "^4.0.0"
 	},
-	"type": "module",
-	"dependencies": {
-		"smui-theme": "^7.0.0-beta.0",
-		"vite-plugin-glsl": "^1.0.2"
-	}
+	"type": "module"
 }

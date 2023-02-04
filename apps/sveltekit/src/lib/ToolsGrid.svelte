@@ -6,7 +6,7 @@
 
 	import type { ToolManifest } from './store/tools';
 	import type { Writable } from 'svelte/store';
-	import { debounce } from 'lodash';
+	import { debounce } from 'lodash-es';
 
   export let tools: Writable<ToolManifest[]>;
 
