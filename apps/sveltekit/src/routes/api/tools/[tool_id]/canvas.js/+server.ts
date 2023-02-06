@@ -10,7 +10,7 @@ export async function GET(req) {
 	const { params } = req;
 	const { tool_id } = params;
 
-	const requiringFilePath = `@kit-tools/${tool_id}/canvas`;
+	const requiringFilePath = `@kit-tools/${tool_id}/canvas.js`;
 	let resolvedPath: string;
 
 	lg.info('GET', { params, requiringFilePath });

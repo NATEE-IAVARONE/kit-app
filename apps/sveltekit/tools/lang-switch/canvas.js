@@ -501,7 +501,7 @@ lib.properties = {
 	color: "#282828",
 	opacity: 1.00,
 	manifest: [
-		{src:"api/tools/lang-switch/canvas/images/langSwitch_atlas_1.png?1673559429922", id:"langSwitch_atlas_1"}
+		{src:"api/tools/lang-switch/canvas-assets/images/langSwitch_atlas_1.png?1673559429922", id:"langSwitch_atlas_1"}
 	],
 	preloads: []
 };

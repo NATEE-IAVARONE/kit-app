@@ -1153,7 +1153,7 @@ lib.properties = {
 	color: "#0F0F0F",
 	opacity: 1.00,
 	manifest: [
-		{src:"api/tools/app-header/canvas/images/appHeader_atlas_1.png?1673731028197", id:"appHeader_atlas_1"}
+		{src:"api/tools/app-header/canvas-assets/images/appHeader_atlas_1.png?1673731028197", id:"appHeader_atlas_1"}
 	],
 	preloads: []
 };

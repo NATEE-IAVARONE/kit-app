@@ -7,7 +7,7 @@ const getDirectories = source =>
 
 const modToolsPath = './node_modules/@kit-tools';
 const fileToCopy = ['canvas.js'];
-const dirToCopy = ['canvas/images/'];
+const dirToCopy = ['canvas-assets/images/'];
 const toolPath = 'build/api/tools';
 
 // for (let tool of getDirectories(modToolsPath)) {

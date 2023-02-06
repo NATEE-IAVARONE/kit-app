@@ -5,7 +5,7 @@ import glob from 'glob';
 import { exit } from 'node:process';
 
 const canvasAnimDir = '../../apps/sveltekit/tools';
-const srcPattern = path.join(canvasAnimDir, '*/canvas/*.js');
+const srcPattern = path.join(canvasAnimDir, '*/canvas-assets/*.js');
 const srcFiles = glob.sync(srcPattern, {});
   
 console.log({srcFiles});
@@ -41,7 +41,7 @@ for (const srcFile of srcFiles) {
 
     if (nthLinesToDelete.includes(nthLine)) continue;
 
-    fileLine = fileLine.replace('src:"images/', `src:"api/tools/${canvasName}/canvas/images/`);
+    fileLine = fileLine.replace('src:"images/', `src:"api/tools/${canvasName}/canvas-assets/images/`);
     // fileLine = fileLine.replaceAll('stage.', 'g.stage.');
 
     newFileData += fileLine;
@@ -56,7 +56,7 @@ for (const srcFile of srcFiles) {
   newFileData += '\n\n/************* HTML *************/\n\n';
 
   // HTML
-  const htmlPath = `${dirname}/canvas/${canvasName}.html`;
+  const htmlPath = `${dirname}/canvas-assets/${canvasName}.html`;
   console.log({ htmlPath });
   const htmlFileData = fs.readFileSync(htmlPath, {encoding:'utf8', flag:'r'});
   const htmlFileLines = htmlFileData.split(nl);
