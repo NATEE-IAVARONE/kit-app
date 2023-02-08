@@ -4,7 +4,7 @@
   "title": "Chrome",
   "version": "1.0.0",
   "description": "",
-  "cardSizes": [2, 6],
+  "cardSizes": [1, 2],
   "author": "NATEE",
   "license": "ISC"
 }

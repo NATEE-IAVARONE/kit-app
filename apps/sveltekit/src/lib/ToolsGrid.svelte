@@ -1,53 +1,79 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { GridStack } from 'gridstack';
+	import { derived, writable, type Writable } from 'svelte/store';
+	import { GridStack, type GridItemHTMLElement } from 'gridstack';
+	import { debounce, set } from 'lodash-es';
 	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
   import Tool from '$lib/tools/Tool.svelte';
-
-	import type { ToolManifest } from './store/tools';
-	import type { Writable } from 'svelte/store';
-	import { debounce } from 'lodash-es';
+	
+	import type { ToolManifest } from '$lib/store/tools';
+	import { defLayout, layout } from '$lib/store/layout';
 
   export let tools: Writable<ToolManifest[]>;
 
-  const column = 2;
-  const margin = 4;
-	const cellHeight = 106 + margin * 2;
+	interface ExtraInfo {
+		h?: number;
+	}
+
+	const viewToolsInfo = writable<Record<string, ExtraInfo>>({});
+
+	let {columns, margin, cellHeight} = defLayout;
+
 	let grid: GridStack;
   let gridEl: HTMLElement;
-	
+
+	const toolElems: Record<string, GridItemHTMLElement> = {};
+
+	layout.subscribe(async val => {
+		if (columns === val.columns) return;
+		grid?.column(columns = val.columns);
+		grid?.compact();
+	});
+
 	function initGrid() {
 		grid = GridStack.init({
 			disableOneColumnMode: true,
-			column,
+			column: columns,
 			cellHeight,
 			margin,
+			disableResize: true,
 		}, gridEl);
+	}
+	const afterToolUpdate = debounce(initGrid, 100);
 
-		console.log('grid initiated');
+	function toggleToolSize(tool: ToolManifest) {
+		return () => {
+			const el = toolElems[tool.id];
+			const sizes = tool.cardSizes ?? [1];
+
+			let { h = sizes[0] } = el.gridstackNode!;
+
+			h = sizes[sizes.indexOf(h) + 1] ?? sizes[0];
+			viewToolsInfo.set(set($viewToolsInfo, `${tool.id}.h`, h));
+
+			grid.update(el, { h });
+		};
 	}
 
-	const afterToolUpdate = debounce(initGrid, 100);
 </script>
 
 
 <main bind:this={gridEl}>
-	<div class="grid-stack-item" gs-w="2" gs-locked="true" gs-no-resize="true" gs-no-move="true">
+	<div class="grid-stack-item" gs-w="2" gs-min-w="2" gs-locked="true" gs-no-resize="true" gs-no-move="true">
 		<section class="grid-stack-item-content">
 			<AnimateCanvas id="app-header"/>
 		</section>
 	</div>
   {#each $tools as tool}
     {#if tool.id !== 'app-header'}
-      <div class="grid-stack-item">
-        <Tool id={tool.id} on:afterUpdate={afterToolUpdate}></Tool>
+      <div bind:this={toolElems[tool.id]} class="grid-stack-item" gs-w="1">
+        <Tool
+					id={tool.id}
+					h={$viewToolsInfo[tool.id]?.h || 1}
+					on:afterUpdate={afterToolUpdate}
+					on:rightClick={toggleToolSize(tool)}
+				></Tool>
       </div>
     {/if}
-  {/each}
-  {#each Array(1) as _unused, _i}
-    <div class="grid-stack-item">
-      <Tool></Tool>
-    </div>
   {/each}
 </main>
 
