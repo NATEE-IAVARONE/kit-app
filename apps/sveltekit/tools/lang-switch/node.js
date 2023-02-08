@@ -1,14 +1,14 @@
-import CP from 'node:child_process';
-import { defaultTo } from 'lodash-es';
+const CP = require('node:child_process');
+const { defaultTo } = require('lodash');
 
-export async function GET({ url }) {
+async function GET({ url }, { logger }) {
 	const allowed = ['it-IT', 'en-EN'];
 
 	const lang = defaultTo(url.searchParams.get('lang'), allowed[0]);
 
 	const psScript = `Set-WinUserLanguageList -Force '${lang}'`;
 
-	console.log({psScript});
+	logger.info({ psScript });
 
 	CP.spawn('powershell.exe',
 		['-ExecutionPolicy', 'Bypass', '-NoExit', '-Command', psScript],
@@ -21,3 +21,5 @@ export async function GET({ url }) {
 
 	return new Response(JSON.stringify(res));
 }
+
+exports.GET = GET;

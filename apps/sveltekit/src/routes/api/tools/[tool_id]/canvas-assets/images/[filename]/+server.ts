@@ -4,7 +4,7 @@ import fs from 'node:fs';
 
 const require = createRequire(import.meta.url);
 
-const lg = loggers.get('server.tools.canvas');
+const logger = loggers.get('server.tools.canvas.images');
 
 export async function GET(req) {	
 	const { params } = req;
@@ -13,7 +13,7 @@ export async function GET(req) {
 	const requiringFilePath = `@kit-tools/${tool_id}/canvas-assets/images/${filename}`;
 	let resolvedPath: string;
 
-	lg.info('GET', { params, requiringFilePath });	
+	logger.info('GET', { params, requiringFilePath });	
 
 	let response: Response;
 
@@ -21,7 +21,7 @@ export async function GET(req) {
 		resolvedPath = require.resolve(requiringFilePath);
 		response = new Response(fs.createReadStream(resolvedPath));
 	} catch(err) {
-		lg.error('cannot resolve the file path', {});
+		logger.error('cannot resolve the file path', {});
 		response = new Response(JSON.stringify({
 			message: `'${tool_id}' is not installed`
 		}));

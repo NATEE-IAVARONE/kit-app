@@ -1,6 +1,6 @@
 const CP = require('node:child_process');
 
-async function GET({ url }) {
+async function GET({ url }, { logger }) {
 	const urlParam = url.searchParams.get('url') ?? '';
 	const modConf = {
 		exe: 'c:/PROGRA~1/Google/Chrome/Application/chrome',
@@ -14,7 +14,7 @@ async function GET({ url }) {
 	
 	const psScript = `${modConf.exe} ${modConf.flags.join(' ')} ${urlParam}`;
 
-	console.log({ psScript });
+	logger.info({ psScript });
 
 	CP.spawn('powershell.exe',
 		['-ExecutionPolicy', 'Bypass', '-NoExit', '-Command', psScript],

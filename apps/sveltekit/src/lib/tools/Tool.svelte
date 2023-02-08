@@ -24,12 +24,6 @@
     })
   );
 
-  interface Tool {
-    id: string;
-    title: string;
-    cardSizes: number[];
-  }
-
   let formSettings = {
     visible: true,
     isCreated: false,
@@ -38,6 +32,21 @@
   let extra = {
     visible: true,
   };
+
+  
+  async function runTool() {
+    const port = 5173;
+    const baseUrl = `http://localhost:${port}`;
+
+    const response = await fetch(`${baseUrl}/api/tools/${id}`, {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' }
+    });
+
+    const res = await response.json();
+
+    console.log({res});
+  }
 
   function onRightClick(e: Event) {
     e.preventDefault();
@@ -48,7 +57,11 @@
   afterUpdate(() => dispatch('afterUpdate'));
 </script>
 
-<section on:contextmenu={onRightClick} class="grid-stack-item-content">
+<section
+  class="grid-stack-item-content"
+  on:click={runTool}
+  on:contextmenu={onRightClick}
+>
   <AnimateCanvas id="{id}"/>
   <h3 class="mdc-typography--headline6">
     {$tool.title}

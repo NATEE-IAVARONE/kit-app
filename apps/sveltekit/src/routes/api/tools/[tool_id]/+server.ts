@@ -1,5 +1,9 @@
 import { createRequire } from 'module';
+import { loggers } from 'winston';
+
 const require = createRequire(import.meta.url);
+
+const logger = loggers.get('server.tools');
 
 export async function GET(req) {	
 	const { params } = req;
@@ -10,16 +14,20 @@ export async function GET(req) {
 	try {
 		require.resolve(packageName);
 	} catch(err) {
-		return new Response(JSON.stringify({
-			message: `'${tool_id}' is not installed`
-		}));
+		const message = `'${tool_id}' is not installed`;
+
+		logger.error(message, err);
+
+		return new Response(JSON.stringify({ message }));
 	}
 
-	const tool = require(packageName);
-	const toolNodeScript = require(`${packageName}/node.js`);
+	const requiredPath = `${packageName}/node.js`;
+	const toolNodeScript = require(requiredPath);
 	
+	logger.info('require', { requiredPath });
+
 	const { GET: nodeGET } = toolNodeScript;
-	const res = nodeGET(req);
+	const res = nodeGET(req, { logger });
 
 	return res;
 }

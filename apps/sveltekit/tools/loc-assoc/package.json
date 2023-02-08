@@ -4,7 +4,6 @@
   "title": "TestIDs → Locations",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "cardSizes": [1, 4],
   "author": "NATEE",
   "license": "ISC"

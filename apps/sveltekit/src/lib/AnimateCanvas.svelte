@@ -14,31 +14,6 @@
     dom_overlay_container?: HTMLElement;
   }
 
-  const port = 5173;
-  const baseUrl = `http://localhost:${port}`;
-
-  // async function launchChrome() {
-  //   const response = await fetch(`${baseUrl}/api/tools/chrome`, {
-  //     method: 'GET',
-  //     headers: { 'content-type': 'application/json' }
-  //   });
-
-  //   const res = await response.json();
-
-  //   console.log({res});
-  // }
-
-  // async function switchLang() {
-  //   const response = await fetch(`${baseUrl}/api/switchLang`, {
-  //     method: 'GET',
-  //     headers: { 'content-type': 'application/json' }
-  //   });
-
-  //   const res = await response.json();
-
-  //   console.log({res});
-  // }
-
   async function getCanvas(id: string) {
     return await import(/* @vite-ignore */`/api/tools/${id}/canvas.js`);
   }

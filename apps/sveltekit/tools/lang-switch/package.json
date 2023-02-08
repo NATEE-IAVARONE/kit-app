@@ -4,7 +4,6 @@
   "title": "ENG ↔ ITA",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "cardSizes": [1, 2],
   "author": "NATEE",
   "license": "ISC"
