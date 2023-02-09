@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { afterUpdate, createEventDispatcher } from 'svelte';
   import { derived } from 'svelte/store';
+  import Button, { Group, Label } from '@smui/button';
   import { find } from 'lodash-es';
 	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
   import { tools as toolsStore } from '$lib/store/tools';
@@ -57,9 +58,10 @@
   afterUpdate(() => dispatch('afterUpdate'));
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <section
   class="grid-stack-item-content"
-  on:click={runTool}
+  on:click={() => extra.visible || runTool()}
   on:contextmenu={onRightClick}
 >
   <AnimateCanvas id="{id}"/>
@@ -71,10 +73,21 @@
       <FormRenderer id="{id}" visible={extra.visible}/>
     {/if}
   </section>
+  {#if extra.visible}
+    <Group id="footer-buttons">
+      <Button>
+        <Label>Cancel</Label>
+      </Button>
+      <Button>
+        <Label>Save</Label>
+      </Button>
+    </Group>
+  {/if}
 </section>
 
 <style lang="scss">
   #extra {
+    display: flex;
     flex-grow: 1;
     background-color: #1f1f1f;
 
@@ -97,4 +110,12 @@
       flex-shrink: 0;
     }
 	}
+  :global(#footer-buttons) {
+    display: flex;
+    justify-content: stretch;
+    
+    :global(button) {
+      flex-grow: 1;
+    }
+  }
 </style>

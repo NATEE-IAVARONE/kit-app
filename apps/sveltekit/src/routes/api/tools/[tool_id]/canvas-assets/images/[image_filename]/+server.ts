@@ -4,21 +4,26 @@ import fs from 'node:fs';
 
 const require = createRequire(import.meta.url);
 
-const logger = loggers.get('server.tools.canvas.images');
+let logger = loggers.get('server.tool.canvas.image');
 
 export async function GET(req) {	
 	const { params } = req;
-	const { tool_id, filename } = params;
+	const { tool_id, image_filename } = params;
 
-	const requiringFilePath = `@kit-tools/${tool_id}/canvas-assets/images/${filename}`;
+	logger = logger.child({
+		...logger.defaultMeta,
+		domain: `server.tool_${tool_id}.canvas.image_${image_filename.replaceAll('.', '').replaceAll('_', '')}`,
+	});
+
+	const image_path = `@kit-tools/${tool_id}/canvas-assets/images/${image_filename}`;
 	let resolvedPath: string;
 
-	logger.info('GET', { params, requiringFilePath });	
+	logger.info('GET', { params, image_path });	
 
 	let response: Response;
 
 	try {
-		resolvedPath = require.resolve(requiringFilePath);
+		resolvedPath = require.resolve(image_path);
 		response = new Response(fs.createReadStream(resolvedPath));
 	} catch(err) {
 		logger.error('cannot resolve the file path', {});

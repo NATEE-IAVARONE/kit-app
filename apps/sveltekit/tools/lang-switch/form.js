@@ -22,11 +22,6 @@ export function schema() {
         key: 'kbLang',
         type: 'select',
         input: true
-      },
-      {
-        type: 'button',
-        key: 'submit',
-        label: 'Submit'
       }
     ]
   };

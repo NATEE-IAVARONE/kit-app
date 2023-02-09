@@ -10,11 +10,6 @@ export function schema() {
         key: 'raw',
         type: 'textarea',
         input: true
-      },
-      {
-        type: 'button',
-        key: 'submit',
-        label: 'Submit'
       }
     ]
   };

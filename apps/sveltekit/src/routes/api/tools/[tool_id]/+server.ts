@@ -3,7 +3,7 @@ import { loggers } from 'winston';
 
 const require = createRequire(import.meta.url);
 
-const logger = loggers.get('server.tools');
+const logger = loggers.get('server.tool');
 
 export async function GET(req) {	
 	const { params } = req;

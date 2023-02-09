@@ -4,7 +4,7 @@ import fs from 'node:fs';
 
 const require = createRequire(import.meta.url);
 
-const lg = loggers.get('server.tools.canvas');
+const lg = loggers.get('server.tool.canvas');
 
 export async function GET(req) {
 	const { params } = req;

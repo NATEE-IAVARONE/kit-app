@@ -1,0 +1,10 @@
+{
+  "id": "checklist",
+  "name": "@kit-tools/checklist",
+  "title": "Checklist",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [1, 3],
+  "author": "Kekka",
+  "license": "ISC"
+}

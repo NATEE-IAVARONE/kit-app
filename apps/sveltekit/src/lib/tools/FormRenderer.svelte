@@ -11,20 +11,9 @@
   const port = 5173;
   const baseUrl = `http://localhost:${port}`;
 
-  async function getForm(id: string) {
-    const response = await fetch(`${baseUrl}/api/tools/${id}/form`, {
-      method: 'GET',
-      headers: { 'content-type': 'text/plain' }
-    });
-
-    const js = await response.text();
-    
-    return await import(/* @vite-ignore */'data:text/javascript;charset=utf-8,' + encodeURIComponent(js));
-  }
-
   onMount(async () => {
     const { Formio } = await import(/* @vite-ignore */'formiojs');
-    const { schema } = await getForm(id);
+    const { schema } = await import(/* @vite-ignore */`${baseUrl}/api/tools/${id}/form.js`);
 
     Formio.createForm(container, schema());
   });
@@ -33,19 +22,24 @@
 
 
 <div
+  id="container"
   bind:this={container}
   class:visible={visible}
 ></div>
 
 
-<style>
-  div {
-    /* position: absolute; */
+<style lang="scss">
+  #container {
+    flex-grow: 1;
     opacity: 0;
     transition: 0.2s;
-  }
-  .visible {
-    /* position: relative; */
-    opacity: 1; 
+
+    &.visible {
+      opacity: 1; 
+    }
+
+    :global(.formio-component-form) {
+      margin: 8px;
+    }
   }
 </style>
