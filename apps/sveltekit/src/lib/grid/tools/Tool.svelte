@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { afterUpdate, createEventDispatcher } from 'svelte';
   import { derived } from 'svelte/store';
-  import Button, { Group, Label } from '@smui/button';
   import { find } from 'lodash-es';
-	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
+	import AnimateCanvas from '$lib/grid/tools/presentation/AnimateCanvas.svelte';
   import { tools as toolsStore } from '$lib/store/tools';
-  import FormRenderer from './FormRenderer.svelte';
+  import FormRenderer from '$lib/grid/tools/extra/FormRenderer.svelte';
+	import ExtraFooter from '$lib/grid/tools/extra/ExtraFooter.svelte';
 
   export let id: string;
   export let h = 1;
+
+  let extraFooter: ExtraFooter;
 
   $: extra.visible = h > 1;
   $: formSettings.isCreated ||= extra.visible;
@@ -70,26 +72,18 @@
   </h3>
   <section id="extra" class:visible={extra.visible}>
     {#if formSettings.isCreated}
-      <FormRenderer id="{id}" visible={extra.visible}/>
+      <FormRenderer id="{id}" visible={extra.visible} footer={extraFooter}/>
     {/if}
+    <ExtraFooter bind:this={extraFooter}></ExtraFooter>
   </section>
-  {#if extra.visible}
-    <Group id="footer-buttons">
-      <Button>
-        <Label>Cancel</Label>
-      </Button>
-      <Button>
-        <Label>Save</Label>
-      </Button>
-    </Group>
-  {/if}
 </section>
 
 <style lang="scss">
   #extra {
     display: flex;
+    flex-direction: column;
     flex-grow: 1;
-    background-color: #1f1f1f;
+    background-color: var(--subsurface);
 
     &:not(.visible) {
       display: none;
@@ -102,7 +96,7 @@
     display: flex;
     flex-direction: column;
 		cursor: pointer;
-		background-color: #242424;
+		background-color: var(--surface);
 		border-radius: 4px;
 		overflow: hidden;
 
@@ -110,12 +104,4 @@
       flex-shrink: 0;
     }
 	}
-  :global(#footer-buttons) {
-    display: flex;
-    justify-content: stretch;
-    
-    :global(button) {
-      flex-grow: 1;
-    }
-  }
 </style>

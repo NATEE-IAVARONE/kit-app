@@ -1,0 +1,10 @@
+{
+  "id": "spreadsheet",
+  "name": "@kit-tools/spreadsheet",
+  "title": "Spreadsheet",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [1, 3],
+  "author": "Kekka",
+  "license": "ISC"
+}

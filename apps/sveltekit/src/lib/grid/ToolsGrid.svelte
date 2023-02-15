@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { derived, writable, type Writable } from 'svelte/store';
+	import { writable, type Writable } from 'svelte/store';
 	import { GridStack, type GridItemHTMLElement } from 'gridstack';
 	import { debounce, set } from 'lodash-es';
-	import AnimateCanvas from '$lib/AnimateCanvas.svelte';
-  import Tool from '$lib/tools/Tool.svelte';
+	import AnimateCanvas from '$lib/grid/tools/presentation/AnimateCanvas.svelte';
+  import Tool from '$lib/grid/tools/Tool.svelte';
 	
 	import type { ToolManifest } from '$lib/store/tools';
 	import { defLayout, layout } from '$lib/store/layout';

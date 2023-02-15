@@ -14,7 +14,7 @@ export function schema() {
       {
         label: 'no-CORS',
         tableView: false,
-        key: 'noCors',
+        key: 'darkmode',
         type: 'checkbox',
         input: true,
         defaultValue: true,
