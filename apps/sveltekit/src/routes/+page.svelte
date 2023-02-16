@@ -6,8 +6,6 @@
 	let loaderEl: Loader;
 </script>
 
-
-
 <ToolsGrid tools={tools}></ToolsGrid>
 
 <Loader bind:this={loaderEl} on:loaded={loaderEl.$destroy}/>

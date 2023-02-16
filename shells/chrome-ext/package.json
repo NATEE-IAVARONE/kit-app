@@ -15,9 +15,12 @@
 	},
 	"dependencies": {
 		"@kit-tools/app-header": "file:../../apps/sveltekit/tools/app-header",
+		"@kit-tools/checklist": "file:../../apps/sveltekit/tools/checklist",
 		"@kit-tools/chrome": "file:../../apps/sveltekit/tools/chrome",
 		"@kit-tools/lang-switch": "file:../../apps/sveltekit/tools/lang-switch",
 		"@kit-tools/loc-assoc": "file:../../apps/sveltekit/tools/loc-assoc",
+		"@kit-tools/pomodoro": "file:../../apps/sveltekit/tools/pomodoro",
+		"@kit-tools/spreadsheet": "file:../../apps/sveltekit/tools/spreadsheet",
 		"bootstrap": "^4.6.0",
 		"createjs": "^1.0.1",
 		"createjs-module": "^0.8.3",
