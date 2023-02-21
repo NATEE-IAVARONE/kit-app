@@ -4,11 +4,10 @@
 	import { debounce, set } from 'lodash-es';
 	import AnimateCanvas from '$lib/grid/tools/presentation/AnimateCanvas.svelte';
   import Tool from '$lib/grid/tools/Tool.svelte';
-	
-	import type { ToolManifest } from '$lib/store/tools';
 	import { defLayout, layout } from '$lib/store/layout';
+	import type { ToolManifest } from '$lib/grid/tools/tools.model';
 
-  export let tools: Writable<ToolManifest[]>;
+  export let manifests: Writable<ToolManifest[]>;
 
 	interface ExtraInfo {
 		h?: number;
@@ -58,19 +57,20 @@
 
 
 <main bind:this={gridEl}>
-	<div class="grid-stack-item" gs-w="2" gs-min-w="2" gs-locked="true" gs-no-resize="true" gs-no-move="true">
-		<section class="grid-stack-item-content">
-			<AnimateCanvas id="app-header"/>
-		</section>
-	</div>
-  {#each $tools as tool}
-    {#if tool.id !== 'app-header'}
-      <div bind:this={toolElems[tool.id]} class="grid-stack-item" gs-w="1">
+  {#each $manifests as manifest}
+    {#if manifest.id === 'app-header'}
+			<div class="grid-stack-item" gs-w="2" gs-min-w="2" gs-locked="true" gs-no-resize="true" gs-no-move="true">
+				<section class="grid-stack-item-content">
+					<AnimateCanvas toolManifest={manifest}/>
+				</section>
+			</div>
+		{:else}
+      <div bind:this={toolElems[manifest.id]} class="grid-stack-item" gs-w="1">
         <Tool
-					id={tool.id}
-					h={$viewToolsInfo[tool.id]?.h || 1}
+				  manifest={manifest}
+					h={$viewToolsInfo[manifest.id]?.h || 1}
 					on:afterUpdate={afterToolUpdate}
-					on:rightClick={toggleToolSize(tool)}
+					on:rightClick={toggleToolSize(manifest)}
 				></Tool>
       </div>
     {/if}

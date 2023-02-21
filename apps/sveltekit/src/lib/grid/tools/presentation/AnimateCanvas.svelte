@@ -1,65 +1,42 @@
 <script lang="ts">
-	import { find } from 'lodash-es';
-	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-  import { tools as toolsStore } from '$lib/store/tools';
+	import type { ToolManifest } from '$lib/grid/tools/tools.model';
+  import type { GlobalAnimateVars } from './AnimateCanvas.model';
 
-  export let id: string;
+  export let toolManifest: ToolManifest;
   
   const g: GlobalAnimateVars = {};
 
-  interface GlobalAnimateVars {
-    anim_container?: HTMLDivElement;
-    canvas?: HTMLCanvasElement;
-    dom_overlay_container?: HTMLElement;
+  browser && loadCanvas();
+  
+  async function loadCanvas() {
+    const { createjs } = await import('$lib/createjs');
+
+    const { setDeps, main, init } = await import(/* @vite-ignore */`/api/tools/${toolManifest.id}/canvas.js`);
+
+    setDeps({ createjs, g });
+    main(createjs, g);
+    init(createjs);
   }
-
-  async function getCanvas(id: string) {
-    return await import(/* @vite-ignore */`/api/tools/${id}/canvas.js`);
-  }
-
-  onMount(async () => {
-		if (!browser) return;
-		
-		const {createjs} = await import('$lib/createjs');
-
-    toolsStore.subscribe(async tools => {
-      const tool = find(tools, {id});
-      
-      if (!tool) return;
-
-      const { setDeps, main, init } = await getCanvas(id);
-
-      setDeps({ createjs, g });
-      main(createjs, g);
-		  init(createjs);
-    });
-
-	});
 </script>
 
 <div bind:this={g.anim_container}>
-  <canvas bind:this={g.canvas} class="{id}" width="160" height="90"></canvas>
+  <canvas bind:this={g.canvas} class="{toolManifest.id}" width="160" height="90"></canvas>
   <section bind:this={g.dom_overlay_container}></section>
 </div>
 
 <style>
   div {
-    width: 160px;
-    height: 90px;
-    transition: 0.2s;
     flex-shrink: 0;
   }
   canvas:not(.app-header) {
     position: absolute;
     display: block;
-    background-color: #282828;
+    background-color: var(--surface);
   }
   section {
     pointer-events: none;
     overflow: hidden;
-    width: 160px;
-    height: 90px;
     position: absolute;
     left: 0;
     top: 0;

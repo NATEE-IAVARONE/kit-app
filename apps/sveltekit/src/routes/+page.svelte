@@ -1,11 +1,6 @@
 <script lang="ts">
-	import Loader from '$lib/Loader.svelte';
-	import ToolsGrid from '$lib/grid/ToolsGrid.svelte';
-  import { tools } from '$lib/store/tools';
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 
-	let loaderEl: Loader;
+	browser && goto('/tools');
 </script>
-
-<ToolsGrid tools={tools}></ToolsGrid>
-
-<Loader bind:this={loaderEl} on:loaded={loaderEl.$destroy}/>

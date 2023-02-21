@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { afterUpdate, createEventDispatcher } from 'svelte';
-  import { derived } from 'svelte/store';
-  import { find } from 'lodash-es';
 	import AnimateCanvas from '$lib/grid/tools/presentation/AnimateCanvas.svelte';
-  import { tools as toolsStore } from '$lib/store/tools';
   import FormRenderer from '$lib/grid/tools/extra/FormRenderer.svelte';
 	import ExtraFooter from '$lib/grid/tools/extra/ExtraFooter.svelte';
+	import type { ToolManifest } from '$lib/grid/tools/tools.model';
 
-  export let id: string;
+  export let manifest: ToolManifest;
   export let h = 1;
 
   let extraFooter: ExtraFooter;
@@ -18,14 +16,6 @@
   const defToolProps = {
     cardSizes: [1, 3],
   }
-
-  const tool = derived(
-    toolsStore,
-    ts => ({
-      ...defToolProps,
-      ...find(ts, {id}),
-    })
-  );
 
   let formSettings = {
     visible: true,
@@ -41,7 +31,7 @@
     const port = 5173;
     const baseUrl = `http://localhost:${port}`;
 
-    const response = await fetch(`${baseUrl}/api/tools/${id}`, {
+    const response = await fetch(`${baseUrl}/api/tools/${manifest.id}`, {
       method: 'GET',
       headers: { 'content-type': 'application/json' }
     });
@@ -66,13 +56,13 @@
   on:click={() => extra.visible || runTool()}
   on:contextmenu={onRightClick}
 >
-  <AnimateCanvas id="{id}"/>
+  <AnimateCanvas toolManifest={manifest}/>
   <h3 class="mdc-typography--headline6">
-    {$tool.title}
+    {manifest.title}
   </h3>
   <section id="extra" class:visible={extra.visible}>
     {#if formSettings.isCreated}
-      <FormRenderer id="{id}" visible={extra.visible} footer={extraFooter}/>
+      <FormRenderer toolManifest={manifest} visible={extra.visible} footer={extraFooter}/>
     {/if}
     <ExtraFooter bind:this={extraFooter}></ExtraFooter>
   </section>

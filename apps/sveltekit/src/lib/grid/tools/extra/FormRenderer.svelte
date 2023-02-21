@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type ExtraFooter from '$lib/grid/tools/extra/ExtraFooter.svelte';
 	import { isEqual } from 'lodash-es';
+	import type ExtraFooter from '$lib/grid/tools/extra/ExtraFooter.svelte';
+	import type { ToolManifest } from '$lib/grid/tools/tools.model';
 
   export const ssr = false;
 
-  export let id: string;
+  export let toolManifest: ToolManifest;
   export let visible = false;
   export let footer: ExtraFooter;
 
@@ -23,7 +24,7 @@
 
   onMount(async () => {
     const { Formio } = await import(/* @vite-ignore */'formiojs');
-    const res = await fetch(`${baseUrl}/api/tools/${id}/form.json`);
+    const res = await fetch(`${baseUrl}/api/tools/${toolManifest.id}/form.json`);
     const schema = await res.json();
 
     form = await Formio.createForm(container, schema);
@@ -47,7 +48,7 @@
       // maybe reload values from BE.
     });
     footer.$on('saveExtra', () => {
-      console.log(`saveExtra from ${id} !!`);
+      console.log(`saveExtra from ${toolManifest.id} !!`);
       form.submit();
       // Disable the button until another change is made.
     });

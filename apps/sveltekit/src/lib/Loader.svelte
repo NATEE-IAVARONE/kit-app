@@ -5,6 +5,7 @@
 	const dispatch = createEventDispatcher();
 
   let canvasRef: HTMLCanvasElement;
+  let bgRef: HTMLCanvasElement;
 
 	onMount(() => {
     let gl = canvasRef.getContext('webgl');
@@ -30,6 +31,7 @@
     let time = gl.getUniformLocation(pid, 'time');
     let fill = gl.getUniformLocation(pid, 'fill');
     requestAnimationFrame(draw);
+    canvasRef.style.opacity = '1';
 
     let perc = 0;
   
@@ -45,7 +47,7 @@
       perc = perc < 2 ? perc + 0.005 : 2;
       if (perc === 2) {
         canvasRef.style.transform = 'translate(-50%, -50%) scale(10)';
-        canvasRef.style.opacity = '0';
+        canvasRef.style.opacity = bgRef.style.opacity = '0';
         dispatch('loaded');
       } else {
         requestAnimationFrame(draw);
@@ -70,16 +72,26 @@
   
 </script>
 
+<div id="background" bind:this={bgRef}></div>
 <canvas width="240px" height="240px" bind:this={canvasRef}></canvas>
 
-<style>
-canvas {
+<style lang="scss">
+canvas, #background {
   position: absolute;
+  transition: 2s;
+}
+canvas {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: 2s;
+  opacity: 0;
 }
-
+#background {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--background);
+}
 </style>

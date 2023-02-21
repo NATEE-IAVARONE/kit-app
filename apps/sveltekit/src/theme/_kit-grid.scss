@@ -1,6 +1,7 @@
 :root {
   --margin: 4px;
   --tool-width: 160px;
+  --tool-height: 90px;
   --widthPerColumn: calc(2 * var(--margin) + var(--tool-width) + 0px);
   --columns: 2;
   --width: calc(var(--columns) * var(--widthPerColumn));
