@@ -9,11 +9,10 @@ const config = {
 
 	kit: {
 		adapter: adapter({
-      pages: "build",
-      assets: "build",
-      fallback: null,
+      pages: 'build',
+      assets: 'build',
       precompress: false,
-      manifest: "manifest.json",
+      manifest: 'manifest.json',
       emptyOutDir: true,
     }),
 		appDir: 'app'

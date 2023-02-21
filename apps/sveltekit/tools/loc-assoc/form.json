@@ -1,0 +1,12 @@
+{
+  "components": [
+    {
+      "label": "Raw",
+      "autoExpand": false,
+      "tableView": true,
+      "key": "raw",
+      "type": "textarea",
+      "input": true
+    }
+  ]
+}

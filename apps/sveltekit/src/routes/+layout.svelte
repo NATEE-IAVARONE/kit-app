@@ -3,6 +3,8 @@
 	import { layout, minWidthPerColumns } from '$lib/store/layout';
 	import { set } from 'lodash-es';
 
+	export let data: { magic: number };
+
 	let ready = false;
 	
 	enum ColumnBy {
@@ -15,6 +17,7 @@
 	let svelteCont: Element | null;
 
 	onMount(() => {
+		console.log({ data });
 		ready = true;
 
 		columnsBy === ColumnBy.Static && setColumns(columns);
@@ -34,7 +37,7 @@
 	}
 
 	function adaptColumnsToWidth(width: number) {
-		const newColumns = width > minWidthPerColumns.two ? 2 : 1;
+		const newColumns = width >= minWidthPerColumns.two ? 2 : 1;
 
 		newColumns === columns || setColumns(newColumns);
 	}
@@ -55,18 +58,8 @@
 {/if}
 
 <style lang="scss">
-	$margin: 4px;
-	$tool-width: 160px;
-	$widthPerColumn: 2 * $margin + $tool-width + 0px;
-
-	:root {
-		--columns: 1;
-		--width: calc(var(--columns) * #{$widthPerColumn});
-	}
-
 	:global(html) {
 		height: 100%;
-		min-width: var(--width);
 		min-height: 600px;
 	}
 	:global(body) {

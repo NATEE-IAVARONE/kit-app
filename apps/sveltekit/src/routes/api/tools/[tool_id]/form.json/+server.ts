@@ -24,13 +24,13 @@ export async function GET(req) {
 	} catch(err) {
 		logger.error('resolve', { err, packageName });
 
-		return new Response('export const schema = {"components":[]}');
+		return new Response('{"components":[]}');
 	}
 
 	logger.info('createReadStream', { form_schema_path });
 
 	response = new Response(fs.createReadStream(form_schema_path));
-	response.headers.set('Content-Type', 'application/javascript');
+	response.headers.set('Content-Type', 'application/json');
 
 	return response;
 }

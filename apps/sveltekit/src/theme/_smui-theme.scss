@@ -1,25 +1,90 @@
 @use 'sass:color';
+@use './darkly-variables';
+@use './color-palette';
+@use './kit-grid';
 
-@use '@material/theme/color-palette';
-
-// Svelte Colors!
 @use '@material/theme/index' as theme with (
-  $primary: #ff3e00,
-  $secondary: #676778,
-  $surface: #fff,
-  $background: #fff,
-  $error: color-palette.$red-900
+  $primary: color-palette.$grey-200,
+  $secondary: color-palette.$grey-400,
+  $surface: color-palette.$grey-500,
+  $on-surface: color-palette.$grey-50,
+  $background: color-palette.$grey-900,
+  $error: color-palette.$red-700
 );
+
+@use '@material/typography' with (
+  $styles-headline6: (
+    font-size: 11px,
+    line-height: 16px
+  )
+);
+
+@use '@material/typography/mdc-typography';
+
+@use 'bootstrap/scss/bootstrap';
+@use 'formiojs/dist/formio.form.css';
+
+
+@use 'gridstack/dist/src/gridstack';
+@use 'gridstack/dist/src/gridstack-extra';
+
+
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/material-icons.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url(/fonts/roboto-normal-500.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/roboto-normal-700.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --primary: #{theme.$primary};
+  --secondary: #{theme.$secondary};
+  --surface: #{theme.$surface};
+  --subsurface: #{darken(theme.$surface, 3%)};
+  --on-surface: #{theme.$on-surface};
+  --background: #{theme.$background};
+  --error: #{theme.$error};
+
+  --width: calc(var(--columns) * var(--widthPerColumn));
+}
 
 html,
 body {
-  background-color: theme.$surface;
-  color: theme.$on-surface;
-}
-
-a {
-  color: #40b3ff;
-}
-a:visited {
-  color: color.scale(#40b3ff, $lightness: -35%);
+  background-color: var(--background);
+  color: var(--on-surface);
+  font-size: 11px;
 }

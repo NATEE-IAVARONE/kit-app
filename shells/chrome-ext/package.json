@@ -11,7 +11,7 @@
 		"symlink:src": "ln -s /mnt/c/kit-app/apps/sveltekit/src/* /mnt/c/kit-app/shells/chrome-ext/src",
 		"symlink:static": "ln -s /mnt/c/kit-app/apps/sveltekit/static/* /mnt/c/kit-app/shells/chrome-ext/static",
 		"prepare": "npm run smui-theme-dark",
-		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
+		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme"
 	},
 	"dependencies": {
 		"@kit-tools/app-header": "file:../../apps/sveltekit/tools/app-header",
@@ -41,12 +41,12 @@
 		"@types/createjs": "^0.0.29",
 		"@types/lodash-es": "^4.17.6",
 		"@types/node": "^18.11.18",
-		"svelte": "^3.54.0",
-		"svelte-check": "^2.9.2",
+		"svelte": "^3.55.0",
+		"svelte-check": "^3.0.2",
 		"sveltekit-adapter-chrome-extension": "^1.5.0",
 		"tslib": "^2.4.1",
-		"typescript": "^4.9.3",
-		"vite": "^4.0.0"
+		"typescript": "^4.9.4",
+		"vite": "^4.0.4"
 	},
 	"type": "module"
 }

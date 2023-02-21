@@ -85,14 +85,5 @@
 		height: 100vh;
 		text-align: center;
 		margin: 0;
-		
-		&.fade {
-			animation: fade 1s;
-			animation-fill-mode: forwards;
-		}
-	}
-	@keyframes fade {
-		from { opacity: 0; }
-		  to { opacity: 1; }
 	}
 </style>

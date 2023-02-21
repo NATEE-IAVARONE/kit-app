@@ -23,9 +23,10 @@
 
   onMount(async () => {
     const { Formio } = await import(/* @vite-ignore */'formiojs');
-    const { schema } = await import(/* @vite-ignore */`${baseUrl}/api/tools/${id}/form.js`);
+    const res = await fetch(`${baseUrl}/api/tools/${id}/form.json`);
+    const schema = await res.json();
 
-    form = await Formio.createForm(container, schema());
+    form = await Formio.createForm(container, schema);
 
     form.on('change', () => {
       const isChanged = !isEqual(form.submission.data, originalSubmission.data);
