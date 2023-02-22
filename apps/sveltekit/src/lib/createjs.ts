@@ -6313,7 +6313,7 @@ createjs.deprecate = function(fallbackMethod, name) {
 	var canvas = createjs.createCanvas?createjs.createCanvas():document.createElement("canvas"); // prevent errors on load in browsers without canvas.
 	if (canvas.getContext) {
 		DisplayObject._hitTestCanvas = canvas;
-		DisplayObject._hitTestContext = canvas.getContext("2d");
+		DisplayObject._hitTestContext = canvas.getContext("2d", {willReadFrequently: true});
 		canvas.width = canvas.height = 1;
 	}
 
@@ -14816,7 +14816,7 @@ createjs.deprecate = function(fallbackMethod, name) {
 			surface.width = this._drawWidth;
 			surface.height = this._drawHeight;
 		} else {
-			var ctx = surface.getContext("2d");
+			var ctx = surface.getContext("2d", {willReadFrequently: true});
 
 			if (!compositeOperation) {
 				ctx.clearRect(0, 0, this._drawWidth+1, this._drawHeight+1);

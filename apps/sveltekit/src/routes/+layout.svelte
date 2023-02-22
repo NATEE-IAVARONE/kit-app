@@ -4,7 +4,7 @@
 	let loaderEl: Loader;
   
   function onLoaded() {
-    setTimeout(loaderEl.$destroy, 2000);
+    setTimeout(() => loaderEl.$destroy(), 2000);
   }
 </script>
 

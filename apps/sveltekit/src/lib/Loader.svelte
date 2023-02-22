@@ -78,13 +78,13 @@
 <style lang="scss">
 canvas, #background {
   position: absolute;
-  transition: 2s;
+  pointer-events: none;
+  transition: opacity 2s;
 }
 canvas {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  pointer-events: none;
   opacity: 0;
 }
 #background {

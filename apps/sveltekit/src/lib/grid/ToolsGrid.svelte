@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import { writable, type Writable } from 'svelte/store';
-	import { GridStack, type GridItemHTMLElement } from 'gridstack';
-	import { debounce, set } from 'lodash-es';
+	import { GridStack, type GridItemHTMLElement, type GridStackNode } from 'gridstack';
+	import { debounce, set, pick, findKey } from 'lodash-es';
 	import AnimateCanvas from '$lib/grid/tools/presentation/AnimateCanvas.svelte';
   import Tool from '$lib/grid/tools/Tool.svelte';
 	import { defLayout, layout } from '$lib/store/layout';
@@ -9,11 +10,17 @@
 
   export let manifests: Writable<ToolManifest[]>;
 
+	const dispatch = createEventDispatcher();
+
 	interface ExtraInfo {
 		h?: number;
 	}
 
 	const viewToolsInfo = writable<Record<string, ExtraInfo>>({});
+	const gridEventsToDispatch = {
+		eventNames: ['added', 'removed', 'change'],
+		eventAttrs: ['toolID', 'type', 'x', 'y', 'w', 'h'],
+	};
 
 	let {columns, margin, cellHeight} = defLayout;
 
@@ -32,11 +39,32 @@
 		grid = GridStack.init({
 			disableOneColumnMode: true,
 			column: columns,
+			minRow: 1,
 			cellHeight,
 			margin,
 			disableResize: true,
+			acceptWidgets: true,
 		}, gridEl);
+
+		setupGridEventDispatching();
 	}
+
+	function setupGridEventDispatching() {
+		gridEventsToDispatch.eventNames.forEach(name => grid.on(name, dispatchGridEvent));
+	}
+
+	function dispatchGridEvent(event: Event, items: GridStackNode[]) {
+		const detail = event.detail
+			.map(d => ({...d, toolID: findKey(toolElems, d.el)}))
+			.map(d => pick(d, gridEventsToDispatch.eventAttrs));
+
+		dispatch('gridEvent', {
+			// event,
+			type: event.type,
+			detail,
+		});
+	}
+
 	const afterToolUpdate = debounce(initGrid, 100);
 
 	function toggleToolSize(tool: ToolManifest) {
@@ -75,14 +103,14 @@
       </div>
     {/if}
   {/each}
+	{ $manifests.length }
+	{#if $manifests.length === 0}
+		<div>EMPTY</div>
+	{/if}
 </main>
 
 <style lang="scss">
 	main {
-		position: absolute;
-		left: 50%;
-		transform: translate(-50%, 0);
-		height: 100vh;
 		text-align: center;
 		margin: 0;
 	}

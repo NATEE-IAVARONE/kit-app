@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 	import type { ToolManifest } from '$lib/grid/tools/tools.model';
   import type { GlobalAnimateVars } from './AnimateCanvas.model';
 
   export let toolManifest: ToolManifest;
   
   const g: GlobalAnimateVars = {};
-
-  browser && loadCanvas();
   
   async function loadCanvas() {
     const { createjs } = await import('$lib/createjs');
@@ -18,6 +16,8 @@
     main(createjs, g);
     init(createjs);
   }
+
+  onMount(loadCanvas);
 </script>
 
 <div bind:this={g.anim_container}>
