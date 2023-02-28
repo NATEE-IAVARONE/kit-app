@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { isEqual } from 'lodash-es';
 	import type ExtraFooter from '$lib/grid/tools/extra/ExtraFooter.svelte';
-	import type { ToolManifest } from '$lib/grid/tools/tools.model';
+	import type { ToolManifest } from '$lib/tools/tools.model';
 
   export const ssr = false;
 

@@ -3,15 +3,13 @@
 	import AnimateCanvas from '$lib/grid/tools/presentation/AnimateCanvas.svelte';
   import FormRenderer from '$lib/grid/tools/extra/FormRenderer.svelte';
 	import ExtraFooter from '$lib/grid/tools/extra/ExtraFooter.svelte';
-	import type { ToolManifest } from '$lib/grid/tools/tools.model';
+	import type { ToolManifest } from '$lib/tools/tools.model';
 
   export let manifest: ToolManifest;
   export let h = 1;
+  export let isSelected = false;
 
   let extraFooter: ExtraFooter;
-
-  $: extra.visible = h > 1;
-  $: formSettings.isCreated ||= extra.visible;
 
   const defToolProps = {
     cardSizes: [1, 3],
@@ -26,6 +24,13 @@
     visible: true,
   };
 
+  $: extra.visible = h > 1;
+  $: formSettings.isCreated ||= extra.visible;
+
+  function selectTool(event: any) {
+    isSelected = !isSelected;
+    dispatch('select', { isSelected, event });
+  }
   
   async function runTool() {
     const port = 5173;
@@ -41,11 +46,6 @@
     console.log({res});
   }
 
-  function onRightClick(e: Event) {
-    e.preventDefault();
-    dispatch('rightClick');
-  }
-
   const dispatch = createEventDispatcher();
   afterUpdate(() => dispatch('afterUpdate'));
 </script>
@@ -53,8 +53,9 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <section
   class="grid-stack-item-content"
-  on:click={() => extra.visible || runTool()}
-  on:contextmenu={onRightClick}
+  on:click={(event) => extra.visible || selectTool(event)}
+  on:dblclick={() => extra.visible || runTool()}
+  on:contextmenu|preventDefault={() => dispatch('rightClick')}
 >
   <AnimateCanvas toolManifest={manifest}/>
   <h3 class="mdc-typography--headline6">

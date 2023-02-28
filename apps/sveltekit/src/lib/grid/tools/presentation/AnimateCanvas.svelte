@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { ToolManifest } from '$lib/grid/tools/tools.model';
+	import type { ToolManifest } from '$lib/tools/tools.model';
   import type { GlobalAnimateVars } from './AnimateCanvas.model';
 
   export let toolManifest: ToolManifest;

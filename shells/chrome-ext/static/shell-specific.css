@@ -1,8 +1,8 @@
 :root {
-  --columns: 2;
+  --grid-columns: 2;
 }
 
 html,
 body {
-  width: var(--width);
+  width: var(--page-width);
 }

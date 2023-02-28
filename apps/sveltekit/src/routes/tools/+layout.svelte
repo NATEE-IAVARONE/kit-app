@@ -40,7 +40,7 @@
 		columns = col;
 		cssRoot ??= document.querySelector(':root');
 
-		cssRoot?.style.setProperty('--columns', col.toString());
+		cssRoot?.style.setProperty('--grid-columns', col.toString());
 
 		const newLayout = set($layout, 'columns', col);
 		layout.set(newLayout);
@@ -62,7 +62,6 @@
 		overflow: hidden;
 	}
 	:global(main) {
-		width: var(--width);
 		overflow: hidden;
 	}
 </style>

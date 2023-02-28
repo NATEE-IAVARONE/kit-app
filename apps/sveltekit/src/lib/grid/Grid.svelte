@@ -6,7 +6,7 @@
 	import AnimateCanvas from '$lib/grid/tools/presentation/AnimateCanvas.svelte';
   import Tool from '$lib/grid/tools/Tool.svelte';
 	import { defLayout, layout } from '$lib/store/layout';
-	import type { ToolManifest } from '$lib/grid/tools/tools.model';
+	import type { ToolManifest } from '$lib/tools/tools.model';
 
   export let manifests: Writable<ToolManifest[]>;
 
