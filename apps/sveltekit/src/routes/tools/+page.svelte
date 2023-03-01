@@ -12,7 +12,7 @@
 
 	const [ spacialTools, normalTools ] = partition(data.toolManifests, { id: 'app-header' });
 	const headerToolManifests = [spacialTools.find(t => t.id === 'app-header') as ToolManifest];
-	const lovedToolManifests = normalTools.filter(t => ['loc-assoc', 'chrome', 'pomodoro', 'spreadsheet', 'checklist'].includes(t.id));
+	const lovedToolManifests = normalTools.filter(t => ['loc-assoc', 'checklist'].includes(t.id));
 	const toolManifests = normalTools;
 
 	interface ToolLocalVars {
@@ -39,7 +39,7 @@
   let allCollections: Collection[] = [
     { title: undefined, toolManifests: headerToolManifests, groupLayout: { type: GroupLayout_Grid } },
     { title: 'LOVED',		toolManifests: lovedToolManifests,	groupLayout: { type: GroupLayout_Queue } },
-    //{ title: 'ALL', toolManifests, groupLayout: { type: GroupLayoutType.QUEUE } },
+    { title: 'ALL', toolManifests, groupLayout: { type: GroupLayout_Grid } },
   ].map(collection => ({
 		...collection,
 		toolLocalVars: Object.fromEntries(
