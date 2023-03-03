@@ -10,7 +10,7 @@
   const unique = Math.random();
   const isDynamic = !!toolManifest.presentation?.animation?.dynamic;
 
-  const getSrc = () => `/api/tools/${toolManifest.id}/${isDynamic ? 'canvas.js' : `presentation.gif?${unique}`}`;
+  const getSrc = () => `http://localhost:5173/api/tools/${toolManifest.id}/${isDynamic ? 'canvas.js' : `presentation.gif?${unique}`}`;
   let src = getSrc();
 
   async function loadCanvas() {

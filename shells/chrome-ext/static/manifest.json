@@ -12,7 +12,14 @@
     "default_icon": "favicon.png",
     "default_popup": "index.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["content-styles.css"],
+      "js": ["content-script.js"]
+    }
+  ],
   "content_security_policy": {
-    "extension_pages": "default-src 'self' http://localhost:5173; style-src 'unsafe-inline'; img-src 'self' data:; script-src-elem 'self' http://localhost:5173"
+    "extension_pages": "default-src 'self' http://localhost:5173; style-src 'unsafe-inline'; img-src 'self' http://localhost:5173 data:; script-src-elem 'self' http://localhost:5173"
   }
 }

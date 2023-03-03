@@ -10,8 +10,7 @@
   "presentation": {
     "animation": {
       "dynamic": false,
-      "frames": 45,
-      "snapshotFrame": 0
+      "frames": 45
     }
   }
 }

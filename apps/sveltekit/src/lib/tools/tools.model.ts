@@ -12,5 +12,4 @@ export interface ToolManifestPresentation {
 export interface ToolManifestAnimation {
   dynamic: boolean;
   frames: number;
-  snapshotFrame: number;
 }

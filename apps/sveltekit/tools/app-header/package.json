@@ -9,8 +9,7 @@
   "license": "ISC",
   "presentation": {
     "animation": {
-      "dynamic": true,
-      "snapshotFrame": 0
+      "dynamic": true
     }
   }
 }

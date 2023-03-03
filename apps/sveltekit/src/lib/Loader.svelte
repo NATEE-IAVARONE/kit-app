@@ -79,13 +79,13 @@
 canvas, #background {
   position: absolute;
   pointer-events: none;
-  transition: opacity 2s;
 }
 canvas {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
+  transition: 2s;
 }
 #background {
   top: 0;
@@ -93,5 +93,6 @@ canvas {
   width: 100vw;
   height: 100vh;
   background: var(--background);
+  transition: opacity 2s;
 }
 </style>

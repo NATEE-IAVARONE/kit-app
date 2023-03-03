@@ -1,0 +1,23 @@
+:root {
+  --background: #0F0F0F;
+  --drawer-width: 356px;
+}
+
+html {
+  width: calc(100vw - var(--drawer-width));
+}
+
+#kit-side-drawer {
+  background-color: var(--background);
+  color: inherit;
+  width: var(--drawer-width);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+#kit-iframe {
+  width: 100%;
+  height: 100%;
+}
