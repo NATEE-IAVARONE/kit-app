@@ -12,7 +12,7 @@
 
 	const [ spacialTools, normalTools ] = partition(data.toolManifests, { id: 'app-header' });
 	const headerToolManifests = [spacialTools.find(t => t.id === 'app-header') as ToolManifest];
-	const lovedToolManifests = normalTools.filter(t => ['loc-assoc', 'checklist'].includes(t.id));
+	const lovedToolManifests = normalTools.filter(t => ['loc-assoc', 'checklist', 'chrome'].includes(t.id));
 	const toolManifests = normalTools;
 
 	interface ToolLocalVars {
@@ -38,7 +38,7 @@
 
   let allCollections: Collection[] = [
     { title: undefined, toolManifests: headerToolManifests, groupLayout: { type: GroupLayout_Grid } },
-    { title: 'LOVED',		toolManifests: lovedToolManifests,	groupLayout: { type: GroupLayout_Queue } },
+    { title: 'LOVED',		toolManifests: lovedToolManifests,	groupLayout: { type: GroupLayout_Grid } },
     { title: 'ALL', toolManifests, groupLayout: { type: GroupLayout_Grid } },
   ].map(collection => ({
 		...collection,
@@ -68,7 +68,7 @@
 
 </script>
 
-<main>
+<main class="scrollable">
 	{#each collections as { title, toolManifests, groupLayout, toolLocalVars }}
 		<section>
 			{#if title}
@@ -116,6 +116,11 @@
 		transform: translate(-50%, 0);
 		text-align: center;
 		margin: 0;
+		overflow-y: scroll;
+
+		&::-webkit-scrollbar{
+    	display: none;
+  	}
 	}
 	.grid-stack-item {
 		&.selected {

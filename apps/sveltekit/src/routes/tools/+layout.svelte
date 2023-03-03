@@ -62,6 +62,8 @@
 		overflow: hidden;
 	}
 	:global(main) {
-		overflow: hidden;
+		&:not(.scrollable) {
+			overflow: hidden;
+		}
 	}
 </style>

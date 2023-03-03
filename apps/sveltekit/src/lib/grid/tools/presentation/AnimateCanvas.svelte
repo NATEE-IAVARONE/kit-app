@@ -6,28 +6,49 @@
   export let toolManifest: ToolManifest;
   
   const g: GlobalAnimateVars = {};
-  
+
+  const unique = Math.random();
+  const isDynamic = !!toolManifest.presentation?.animation?.dynamic;
+
+  const getSrc = () => `/api/tools/${toolManifest.id}/${isDynamic ? 'canvas.js' : `presentation.gif?${unique}`}`;
+  let src = getSrc();
+
   async function loadCanvas() {
     const { createjs } = await import('$lib/createjs');
 
-    const { setDeps, main, init } = await import(/* @vite-ignore */`/api/tools/${toolManifest.id}/canvas.js`);
+    const { setDeps, main, init } = await import(/* @vite-ignore */src);
 
     setDeps({ createjs, g });
     main(createjs, g);
     init(createjs);
   }
 
-  onMount(loadCanvas);
+  function restartAnimation() {
+    console.log('restartAnimation');
+    src = '';
+    setTimeout(() => src = getSrc());
+  }
+
+  isDynamic && onMount(loadCanvas);
 </script>
 
-<div bind:this={g.anim_container}>
-  <canvas bind:this={g.canvas} class="{toolManifest.id}" width="160" height="90"></canvas>
-  <section bind:this={g.dom_overlay_container}></section>
-</div>
+{#if isDynamic}
+  <div bind:this={g.anim_container}>
+    <canvas bind:this={g.canvas} class="{toolManifest.id}" width="160" height="90"></canvas>
+    <section bind:this={g.dom_overlay_container}></section>
+  </div>
+{:else}
+  <div on:mouseenter={restartAnimation}>
+    <img {src} alt="presentation">
+  </div>
+{/if}
 
 <style>
   div {
-    flex-shrink: 0;
+    height: var(--grid-cell-height);
+  }
+  img {
+    pointer-events: none;
   }
   canvas:not(.app-header) {
     position: absolute;

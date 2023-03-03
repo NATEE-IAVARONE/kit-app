@@ -6,5 +6,12 @@
   "description": "",
   "cardSizes": [1, 3],
   "author": "NATEE",
-  "license": "ISC"
+  "license": "ISC",
+  "presentation": {
+    "animation": {
+      "dynamic": false,
+      "frames": 19,
+      "snapshotFrame": 0
+    }
+  }
 }
