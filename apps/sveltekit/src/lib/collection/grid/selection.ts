@@ -1,5 +1,3 @@
-import type { GridStack, GridItemHTMLElement } from 'gridstack';
-
 const borderClassNames = [
   'no-top-left',
   'no-top-right',
@@ -14,10 +12,12 @@ interface Coords {
   h: number;
 }
 
-export function ricalculateBorderRadius(grid: GridStack) {
-  const selectedNodes = grid.getGridItems()
-    .map(elem => elem.gridstackNode!)
-    .filter(n => n.el!.classList.contains('selected'));
+interface GridElement extends Coords {
+  el: HTMLElement;
+}
+
+export function ricalculateBorderRadius(elements: GridElement[]) {
+  const selectedNodes = elements.filter(n => n.el!.classList.contains('selected'));
 
   const selectedField = selectedNodes
     .reduce((acc, {el, x, y, w, h}) => {
@@ -29,7 +29,7 @@ export function ricalculateBorderRadius(grid: GridStack) {
       }
 
       return acc;
-    }, [] as GridItemHTMLElement[][]);
+    }, [] as GridElement['el'][][]);
 
   selectedNodes.forEach(n => {
     n.el!.classList.remove(...borderClassNames)
@@ -37,7 +37,7 @@ export function ricalculateBorderRadius(grid: GridStack) {
   });
 }
 
-function getBorderClassNames({x, y, w, h}: Coords, field: GridItemHTMLElement[][]): string[] {
+function getBorderClassNames({x, y, w, h}: Coords, field: GridElement['el'][][]): string[] {
   return [
     !(field[x - 1]?.[y]					|| field[x				]?.[y - 1]),
     !(field[x + w]?.[y]					|| field[x + w - 1]?.[y - 1]),

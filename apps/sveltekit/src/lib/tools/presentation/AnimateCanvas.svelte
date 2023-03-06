@@ -24,7 +24,6 @@
   }
 
   function restartAnimation() {
-    console.log('restartAnimation');
     src = '';
     setTimeout(() => src = getSrc());
   }

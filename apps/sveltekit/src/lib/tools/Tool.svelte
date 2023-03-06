@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { afterUpdate, createEventDispatcher } from 'svelte';
+	import { afterUpdate, createEventDispatcher, getContext } from 'svelte';
 	import AnimateCanvas from '$lib/tools/presentation/AnimateCanvas.svelte';
   import FormRenderer from '$lib/tools/extra/FormRenderer.svelte';
 	import ExtraFooter from '$lib/tools/extra/ExtraFooter.svelte';
@@ -7,13 +7,8 @@
 
   export let manifest: ToolManifest;
   export let h = 1;
-  export let isSelected = false;
 
   let extraFooter: ExtraFooter;
-
-  const defToolProps = {
-    cardSizes: [1, 3],
-  }
 
   let formSettings = {
     visible: true,
@@ -26,11 +21,6 @@
 
   $: extra.visible = h > 1;
   $: formSettings.isCreated ||= extra.visible;
-
-  function selectTool(event: any) {
-    isSelected = !isSelected;
-    dispatch('select', { isSelected, event });
-  }
   
   async function runTool() {
     const port = 5173;
@@ -50,10 +40,14 @@
   afterUpdate(() => dispatch('afterUpdate'));
 </script>
 
+
+
+
+
+
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <section
   class="grid-stack-item-content"
-  on:click={(event) => extra.visible || selectTool(event)}
   on:dblclick={() => extra.visible || runTool()}
   on:contextmenu|preventDefault={() => dispatch('rightClick')}
 >
@@ -68,6 +62,11 @@
     <ExtraFooter bind:this={extraFooter}></ExtraFooter>
   </section>
 </section>
+
+
+
+
+
 
 <style lang="scss">
   #extra {

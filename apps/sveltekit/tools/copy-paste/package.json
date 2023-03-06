@@ -1,0 +1,16 @@
+{
+  "id": "copy-paste",
+  "name": "@kit-tools/copy-paste",
+  "title": "Copy / Paste",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [1, 3],
+  "author": "Kekka",
+  "license": "ISC",
+  "presentation": {
+    "animation": {
+      "dynamic": false,
+      "frames": 126
+    }
+  }
+}

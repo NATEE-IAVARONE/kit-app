@@ -4,9 +4,9 @@ import type { PageServerLoad } from './$types';
 const moduleManager = new NodeModulesManager();
 
 export const load = (async ({ params }) => {
-  const toolManifests = await moduleManager.getManifests();
+  const manifests = await moduleManager.getManifests();
 
   return {
-    toolManifests,
+    manifests,
   };
 }) satisfies PageServerLoad;
