@@ -3,9 +3,9 @@
 	import { writable, type Writable } from 'svelte/store';
 	import { GridStack, type GridItemHTMLElement, type GridStackNode } from 'gridstack';
 	import { debounce, set, pick, findKey } from 'lodash-es';
-	import AnimateCanvas from '$lib/grid/tools/presentation/AnimateCanvas.svelte';
-  import Tool from '$lib/grid/tools/Tool.svelte';
-	import { defLayout, layout } from '$lib/store/layout';
+	import AnimateCanvas from '$lib/tools/presentation/AnimateCanvas.svelte';
+  import Tool from '$lib/tools/Tool.svelte';
+	import { defLayout, layout } from '$lib/groupLayout/layout.store';
 	import type { ToolManifest } from '$lib/tools/tools.model';
 
   export let manifests: Writable<ToolManifest[]>;

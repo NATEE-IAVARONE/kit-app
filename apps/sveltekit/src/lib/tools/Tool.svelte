@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { afterUpdate, createEventDispatcher } from 'svelte';
-	import AnimateCanvas from '$lib/grid/tools/presentation/AnimateCanvas.svelte';
-  import FormRenderer from '$lib/grid/tools/extra/FormRenderer.svelte';
-	import ExtraFooter from '$lib/grid/tools/extra/ExtraFooter.svelte';
+	import AnimateCanvas from '$lib/tools/presentation/AnimateCanvas.svelte';
+  import FormRenderer from '$lib/tools/extra/FormRenderer.svelte';
+	import ExtraFooter from '$lib/tools/extra/ExtraFooter.svelte';
 	import type { ToolManifest } from '$lib/tools/tools.model';
 
   export let manifest: ToolManifest;

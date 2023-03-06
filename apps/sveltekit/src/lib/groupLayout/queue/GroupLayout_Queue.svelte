@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { debounce } from 'lodash-es';
-	import { defLayout } from '$lib/store/layout';
+	import { defLayout } from '$lib/groupLayout/layout.store';
 	import { ricalculateBorderRadius } from '../common/highlight';
 	import { initGrid } from '../common/gridLibrary';
 	import type { GridStack } from 'gridstack';

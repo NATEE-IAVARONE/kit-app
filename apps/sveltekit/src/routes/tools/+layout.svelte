@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { set } from 'lodash-es';
-	import { layout, minWidthPerColumns } from '$lib/store/layout';
+	import { layout, minWidthPerColumns } from '$lib/groupLayout/layout.store';
 	import { ColumnBy } from './tools.model';
 
 	let ready = false;

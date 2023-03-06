@@ -40,3 +40,10 @@
   --background: #{theme.$background};
   --error: #{theme.$error};
 }
+
+body,
+#svelte {
+  height: 100%;
+  text-align: center;
+  position: relative;
+}

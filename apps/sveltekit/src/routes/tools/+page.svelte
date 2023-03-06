@@ -1,19 +1,16 @@
 <script lang="ts">
-	import { partition } from 'lodash-es';
-	import { defLayout, layout } from '$lib/store/layout';
+	import { defLayout, layout } from '$lib/groupLayout/layout.store';
 	import GroupLayout_Queue from '$lib/groupLayout/queue/GroupLayout_Queue.svelte';
 	import GroupLayout_Grid from '$lib/groupLayout/grid/GroupLayout_Grid.svelte';
-  import Tool from '$lib/grid/tools/Tool.svelte';
+  import Tool from '$lib/tools/Tool.svelte';
 	import { tools } from '$lib/tools/tools.store';
 	import type { ToolManifest } from '$lib/tools/tools.model';
 
 	export let data: { toolManifests: ToolManifest[] };
 	tools.set(data.toolManifests);
 
-	const [ spacialTools, normalTools ] = partition(data.toolManifests, { id: 'app-header' });
-	const headerToolManifests = [spacialTools.find(t => t.id === 'app-header') as ToolManifest];
-	const lovedToolManifests = normalTools.filter(t => ['loc-assoc', 'checklist', 'chrome'].includes(t.id));
-	const toolManifests = normalTools;
+	const lovedToolManifests = data.toolManifests.filter(t => ['loc-assoc', 'checklist', 'chrome'].includes(t.id));
+	const toolManifests = data.toolManifests;
 
 	interface ToolLocalVars {
 		isSelected?: boolean;
@@ -37,9 +34,8 @@
 	layout.subscribe(async val => (columns = val.columns));
 
   let allCollections: Collection[] = [
-    { title: undefined, toolManifests: headerToolManifests, groupLayout: { type: GroupLayout_Grid } },
-    { title: 'LOVED',		toolManifests: lovedToolManifests,	groupLayout: { type: GroupLayout_Grid } },
-    { title: 'ALL', toolManifests, groupLayout: { type: GroupLayout_Grid } },
+    { title: 'LOVED',	toolManifests: lovedToolManifests,	groupLayout: { type: GroupLayout_Grid } },
+    { title: 'ALL', 	toolManifests, groupLayout: { type: GroupLayout_Grid } },
   ].map(collection => ({
 		...collection,
 		toolLocalVars: Object.fromEntries(
@@ -110,10 +106,8 @@
 		margin: 0 var(--grid-margin);
 	}
 	main {
-		height: 100vh;
-		position: absolute;
-		left: 50%;
-		transform: translate(-50%, 0);
+		display: inline-block;
+		height: 100%;
 		text-align: center;
 		margin: 0;
 		overflow-y: scroll;
