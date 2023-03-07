@@ -15,7 +15,7 @@
   "content_scripts": [
     {
       "__matches": ["<all_urls>"],
-      "matches": ["http://localhost:5173/tools"],
+      "matches": ["http://localhost:5173/tools#side-panel"],
       "css": ["content-styles.css"],
       "js": ["content-script.js"]
     }

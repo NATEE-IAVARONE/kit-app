@@ -7,11 +7,12 @@
 	export let collection;
 
 	const context = {
-		update: () => (collection = collection)
+		update: () => {
+			collection = collection;
+		}
 	};
 
 	setContext('collection', context);
-
 </script>
 
 
@@ -20,12 +21,12 @@
 
 
 <section>
-  <h2>{ collection.title }</h2>
-  <Grid>
-    {#each collection.manifests as manifest}
-      <GridItem component={Tool} {manifest}></GridItem>
-    {/each}
-  </Grid>
+	<h2>{ collection.title }</h2>
+	<Grid>
+		{#each collection.manifests as manifest}
+			<GridItem component={Tool} {manifest}></GridItem>
+		{/each}
+	</Grid>
 </section>
 
 

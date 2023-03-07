@@ -3,22 +3,9 @@
 
 	export let component;
 	export let manifest;
-
+	
 	const gridContext = getContext('grid');
-	gridContext.itemsLocalVars[manifest.id] ??= {};
-
-	let localVars;
-
-	$: localVars = gridContext.itemsLocalVars[manifest.id];
-
-
-  function selectTool(event: any) {
-    localVars.isSelected = !localVars.isSelected;
-    let isMultiselect = event.ctrlKey;
-
-		gridContext.onItemSelection(manifest, { isMultiselect });
-	}
-
+	let localVars = (gridContext.itemsLocalVars[manifest.id] ??= {});
 </script>
 
 
@@ -29,8 +16,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
   class="grid-stack-item"
-  class:selected={localVars.isSelected}
-  on:click={ selectTool }
+	bind:this={localVars.el}
   gs-w="1"
 >
 	<svelte:component
@@ -49,7 +35,7 @@
 
 <style lang="scss">
 	.grid-stack-item {
-		&.selected {
+		&:global(.selected) {
 			background-color: var(--secondary);
 			border-radius: 6px;
 	

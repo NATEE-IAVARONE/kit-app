@@ -16,8 +16,21 @@ interface GridElement extends Coords {
   el: HTMLElement;
 }
 
-export function ricalculateBorderRadius(elements: GridElement[]) {
-  const selectedNodes = elements.filter(n => n.el!.classList.contains('selected'));
+export function onItemSelection(localVars: any, itemsLocalVars: any) {
+  return ({ctrlKey: isMultiselect}: any) => {
+    localVars.el.classList.toggle('selected');
+    
+    isMultiselect || Object.values(itemsLocalVars)
+    .forEach(vars => vars === localVars || vars.el.classList.remove('selected'));
+    
+    ricalculateBorderRadius(itemsLocalVars);
+  };
+}
+
+export function ricalculateBorderRadius(localVars: any) {
+  const selectedNodes = Object.values(localVars)
+    .filter(vars => vars.el.classList.contains('selected'))
+    .map(vars => vars.gridNode);
 
   const selectedField = selectedNodes
     .reduce((acc, {el, x, y, w, h}) => {
@@ -32,8 +45,9 @@ export function ricalculateBorderRadius(elements: GridElement[]) {
     }, [] as GridElement['el'][][]);
 
   selectedNodes.forEach(n => {
-    n.el!.classList.remove(...borderClassNames)
-    n.el!.classList.add(...getBorderClassNames(n as Coords, selectedField));
+    n.el!.classList.remove(...borderClassNames);
+    const classesToAdd = getBorderClassNames(n as Coords, selectedField);
+    classesToAdd.length && n.el!.classList.add(...classesToAdd);
   });
 }
 
@@ -44,5 +58,6 @@ function getBorderClassNames({x, y, w, h}: Coords, field: GridElement['el'][][])
     !(field[x - 1]?.[y + h - 1] || field[x				]?.[y + h]),
     !(field[x + w]?.[y + h - 1] || field[x + w - 1]?.[y + h]),
   ]
-  .map((b, i) => b || borderClassNames[i]) as unknown as string[];
+  .map((b, i) => b ? '' : borderClassNames[i])
+  .filter(Boolean) as unknown as string[];
 }

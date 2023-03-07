@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { debounce } from 'lodash-es';
 	import { defLayout, layout } from '$lib/collection/grid/gridLayout.store';
-	import { ricalculateBorderRadius } from './selection';
+	import { onItemSelection, ricalculateBorderRadius } from './selection';
 	import { GridStack } from 'gridstack';
 	import { getContext, setContext } from 'svelte';
 
@@ -10,35 +10,38 @@
   let grid: GridStack | undefined;
   let gridEl: HTMLElement;
 
-	const collectionContext = getContext('collection');
-
   layout.subscribe(async val => {
 		if (columns === val.columns) return;
 		grid?.column(columns = val.columns);
 		grid?.compact();
 	});
 
-	const context = {
-		onChange: debounce(() => {
-			const onChange = context.onChange = () => ricalculateBorderRadius(getGridElements(grid!));
-			grid = initGrid(gridEl, { defLayout, onChange });
+	const onChangeFnByStage = {
+		initial: debounce(() => {
+			onChange = context.onChange = onChangeFnByStage.subsequent;
+			initGrid();
 			onChange();
 		}, 100),
+		subsequent: () => {
+			ricalculateBorderRadius(context.itemsLocalVars);
+		}
+	};
+
+	let onChange = onChangeFnByStage.initial;
+
+	const context = {
+		onChange,
 		itemsLocalVars: {},
 		onItemSelection
 	};
 
+	const collectionContext = getContext('collection');
 	setContext('grid', context);
 
-	function getGridElements(grid: GridStack) {
-		return grid.getGridItems()
-			.map(elem => elem.gridstackNode!);
-	}
-
-	function initGrid(gridEl: HTMLElement, { defLayout, onChange }: any) {
+	function initGrid() {
 		let {columns, margin, cellHeight} = defLayout;
 
-		const grid = GridStack.init({
+		grid = GridStack.init({
 			disableOneColumnMode: true,
 			column: columns,
 			minRow: 1,
@@ -48,15 +51,30 @@
 			acceptWidgets: true,
 		}, gridEl);
 
-		['added', 'removed', 'change'].forEach(name => grid.on(name, onChange));
-
-		return grid;
+		assignGridNodesToLocalVars();
+		handleGridItemsClick();
+		handleGridEvents();
 	}
 
-	function onItemSelection(manifest: any, {isMultiselect}: any) {
-		isMultiselect || Object.entries(context.itemsLocalVars).forEach(([_id, vars]) => (vars.isSelected = _id === manifest.id));
+	function assignGridNodesToLocalVars() {
+		const varss = Object.values(context.itemsLocalVars);
 
-		collectionContext.update();
+		grid.getGridItems().forEach(gridEl => {
+			const el = gridEl.gridstackNode!.el!;
+			const vars = varss.find(v => v.el === el);
+			vars.gridNode = gridEl.gridstackNode;
+		});
+	}
+
+	function handleGridItemsClick() {
+		const varss = Object.values(context.itemsLocalVars);
+
+		varss.forEach(vars => vars.el.addEventListener('click', onItemSelection(vars, varss)));
+	}
+
+	function handleGridEvents() {
+		['change'].forEach(name => grid!.on(name, onChange));
+		['added', 'removed'].forEach(name => grid!.on(name, collectionContext.update));
 	}
 </script>
 

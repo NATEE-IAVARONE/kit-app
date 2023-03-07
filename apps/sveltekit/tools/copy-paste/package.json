@@ -1,7 +1,7 @@
 {
   "id": "copy-paste",
   "name": "@kit-tools/copy-paste",
-  "title": "Copy / Paste",
+  "title": "Copy → Paste",
   "version": "1.0.0",
   "description": "",
   "cardSizes": [1, 3],
