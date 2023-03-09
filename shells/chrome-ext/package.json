@@ -21,6 +21,7 @@
 		"@kit-tools/lang-switch": "file:../../apps/sveltekit/tools/lang-switch",
 		"@kit-tools/loc-assoc": "file:../../apps/sveltekit/tools/loc-assoc",
 		"@kit-tools/pomodoro": "file:../../apps/sveltekit/tools/pomodoro",
+		"@kit-tools/search": "file:../../apps/sveltekit/tools/search",
 		"@kit-tools/spreadsheet": "file:../../apps/sveltekit/tools/spreadsheet",
 		"bootstrap": "^4.6.0",
 		"createjs": "^1.0.1",

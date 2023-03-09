@@ -16,11 +16,20 @@ interface GridElement extends Coords {
   el: HTMLElement;
 }
 
-export function onItemSelection(localVars: any, itemsLocalVars: any) {
+export function handleGridItemsClick(itemsLocalVars: any) {
+  itemsLocalVars.forEach(vars =>
+    vars.el.addEventListener(
+      'click',
+      onItemSelection(vars, itemsLocalVars)
+    )
+  );
+}
+
+function onItemSelection(localVars: any, itemsLocalVars: any) {
   return ({ctrlKey: isMultiselect}: any) => {
     localVars.el.classList.toggle('selected');
     
-    isMultiselect || Object.values(itemsLocalVars)
+    isMultiselect || itemsLocalVars
     .forEach(vars => vars === localVars || vars.el.classList.remove('selected'));
     
     ricalculateBorderRadius(itemsLocalVars);
@@ -28,7 +37,7 @@ export function onItemSelection(localVars: any, itemsLocalVars: any) {
 }
 
 export function ricalculateBorderRadius(localVars: any) {
-  const selectedNodes = Object.values(localVars)
+  const selectedNodes = localVars
     .filter(vars => vars.el.classList.contains('selected'))
     .map(vars => vars.gridNode);
 

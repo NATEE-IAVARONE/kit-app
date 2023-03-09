@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { debounce } from 'lodash-es';
 	import { defLayout, layout } from '$lib/collection/grid/gridLayout.store';
-	import { onItemSelection, ricalculateBorderRadius } from './selection';
+	import { handleGridItemsClick, ricalculateBorderRadius } from './selection';
 	import { GridStack } from 'gridstack';
 	import { getContext, setContext } from 'svelte';
 
@@ -31,8 +31,7 @@
 
 	const context = {
 		onChange,
-		itemsLocalVars: {},
-		onItemSelection
+		itemsLocalVars: []
 	};
 
 	const collectionContext = getContext('collection');
@@ -52,24 +51,16 @@
 		}, gridEl);
 
 		assignGridNodesToLocalVars();
-		handleGridItemsClick();
+		handleGridItemsClick(context.itemsLocalVars);
 		handleGridEvents();
 	}
 
 	function assignGridNodesToLocalVars() {
-		const varss = Object.values(context.itemsLocalVars);
-
 		grid.getGridItems().forEach(gridEl => {
 			const el = gridEl.gridstackNode!.el!;
-			const vars = varss.find(v => v.el === el);
+			const vars = context.itemsLocalVars.find(v => v.el === el);
 			vars.gridNode = gridEl.gridstackNode;
 		});
-	}
-
-	function handleGridItemsClick() {
-		const varss = Object.values(context.itemsLocalVars);
-
-		varss.forEach(vars => vars.el.addEventListener('click', onItemSelection(vars, varss)));
 	}
 
 	function handleGridEvents() {

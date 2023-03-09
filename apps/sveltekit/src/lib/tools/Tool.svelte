@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { afterUpdate, createEventDispatcher, getContext } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	import AnimateCanvas from '$lib/tools/presentation/AnimateCanvas.svelte';
   import FormRenderer from '$lib/tools/extra/FormRenderer.svelte';
 	import ExtraFooter from '$lib/tools/extra/ExtraFooter.svelte';
@@ -37,7 +37,6 @@
   }
 
   const dispatch = createEventDispatcher();
-  afterUpdate(() => dispatch('afterUpdate'));
 </script>
 
 

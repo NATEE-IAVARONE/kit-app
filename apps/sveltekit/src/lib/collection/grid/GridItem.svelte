@@ -1,11 +1,17 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
+	import { getContext, afterUpdate } from 'svelte';
 
 	export let component;
 	export let manifest;
-	
+
+	let el: HTMLDivElement;
 	const gridContext = getContext('grid');
-	let localVars = (gridContext.itemsLocalVars[manifest.id] ??= {});
+	
+	afterUpdate(() => {
+		let localVars = gridContext.itemsLocalVars.find(vars => vars.el === el);
+		localVars || gridContext.itemsLocalVars.push(localVars = { el });
+		gridContext.onChange();
+	});
 </script>
 
 
@@ -14,17 +20,8 @@
 
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div
-  class="grid-stack-item"
-	bind:this={localVars.el}
-  gs-w="1"
->
-	<svelte:component
-		this={component}
-		{manifest}
-		on:afterUpdate={gridContext.onChange}
-	>
-	</svelte:component>
+<div class="grid-stack-item" bind:this={el}>
+	<svelte:component this={component} {manifest}></svelte:component>
 </div>
 
 
