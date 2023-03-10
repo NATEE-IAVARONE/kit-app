@@ -11,11 +11,16 @@ html {
   background-color: var(--background);
   color: inherit;
   width: var(--drawer-width);
+  min-width: 170px;
+  max-width: 505px;
   height: 100vh;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 9999999;
+  resize: horizontal;
+  overflow: hidden;
+  direction: rtl;
 }
 
 #kit-iframe {

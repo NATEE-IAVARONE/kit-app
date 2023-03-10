@@ -19,6 +19,7 @@ const widthPerColumn = 2 * margin + toolWidth;
 
 export const minWidthPerColumns = {
   two: 2 * widthPerColumn,
+  three: 3 * widthPerColumn,
 };
 
 export const layout = writable<Layout>(defLayout);

@@ -31,7 +31,11 @@
 	}
 
 	function adaptColumnsToWidth(width: number) {
-		const newColumns = width >= minWidthPerColumns.two ? 2 : 1;
+		const newColumns = width >= minWidthPerColumns.three
+			? 3
+			: width >= minWidthPerColumns.two
+				? 2
+				: 1;
 
 		newColumns === columns || setColumns(newColumns);
 	}

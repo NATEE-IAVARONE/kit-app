@@ -23,6 +23,7 @@
 		"@kit-tools/pomodoro": "file:../../apps/sveltekit/tools/pomodoro",
 		"@kit-tools/search": "file:../../apps/sveltekit/tools/search",
 		"@kit-tools/spreadsheet": "file:../../apps/sveltekit/tools/spreadsheet",
+		"@kit-tools/wiki": "file:../../apps/sveltekit/tools/wiki",
 		"bootstrap": "^4.6.0",
 		"createjs": "^1.0.1",
 		"createjs-module": "^0.8.3",

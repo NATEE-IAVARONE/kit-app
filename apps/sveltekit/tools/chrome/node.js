@@ -1,5 +1,4 @@
 const CP = require('node:child_process');
-const robot = require('@jitsi/robotjs');
 
 async function GET({ url }, { logger }) {
 	const urlParam = url.searchParams.get('url') ?? '';
@@ -21,8 +20,6 @@ async function GET({ url }, { logger }) {
 		['-ExecutionPolicy', 'Bypass', '-NoExit', '-Command', psScript],
 		{ stdio: 'ignore' }
 	);
-
-	robot.moveMouse(100, 100);
 
 	const res = {
 		magicNumber: 42,

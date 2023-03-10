@@ -20,7 +20,7 @@
 
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="grid-stack-item" bind:this={el}>
+<div class="grid-stack-item" bind:this={el} gs-max-w="1">
 	<svelte:component this={component} {manifest}></svelte:component>
 </div>
 
