@@ -1,46 +1,49 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import type { ToolManifest } from '$lib/tools/tools.model';
-  import type { GlobalAnimateVars } from './AnimateCanvas.model';
+  import AbobeAnimate from './canvasController/AbobeAnimate.svelte';
+  import Gifler from './canvasController/Gifler.svelte';
 
   export let toolManifest: ToolManifest;
-  
-  const g: GlobalAnimateVars = {};
 
-  const unique = Math.random();
   const isDynamic = !!toolManifest.presentation?.animation?.dynamic;
 
-  const getSrc = () => `http://localhost:5173/api/tools/${toolManifest.id}/${isDynamic ? 'canvas.js' : `presentation.gif?${unique}`}`;
+  const getSrc = () => `http://localhost:5173/api/tools/${toolManifest.id}/${isDynamic ? 'canvas.js' : 'presentation.gif'}`;
   let src = getSrc();
-
-  async function loadCanvas() {
-    const { createjs } = await import('$lib/createjs');
-
-    const { setDeps, main, init } = await import(/* @vite-ignore */src);
-
-    setDeps({ createjs, g });
-    main(createjs, g);
-    init(createjs);
-  }
 
   function restartAnimation() {
     src = '';
     setTimeout(() => src = getSrc());
   }
-
-  isDynamic && onMount(loadCanvas);
 </script>
 
+
+
+
+
+
 {#if isDynamic}
-  <div bind:this={g.anim_container}>
-    <canvas bind:this={g.canvas} class="{toolManifest.id}" width="160" height="90"></canvas>
-    <section bind:this={g.dom_overlay_container}></section>
-  </div>
+  <AbobeAnimate {src}>
+    <canvas
+      width="160"
+      height="90"
+    ></canvas>
+  </AbobeAnimate>
 {:else}
-  <div on:mouseenter={restartAnimation}>
+  <Gifler {src}>
+    <canvas
+      width="160"
+      height="90"
+    ></canvas>
+  </Gifler>
+  <!-- <div on:mouseenter={restartAnimation}>
     <img {src} alt="presentation">
-  </div>
+  </div> -->
 {/if}
+
+
+
+
+
 
 <style>
   div {
@@ -48,18 +51,5 @@
   }
   img {
     pointer-events: none;
-  }
-  canvas:not(.app-header) {
-    position: absolute;
-    display: block;
-    background-color: var(--surface);
-  }
-  section {
-    pointer-events: none;
-    overflow: hidden;
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: block;
   }
 </style>

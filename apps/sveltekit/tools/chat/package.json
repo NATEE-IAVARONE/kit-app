@@ -1,0 +1,16 @@
+{
+  "id": "chat",
+  "name": "@kit-tools/chat",
+  "title": "Chat",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [1, 3],
+  "author": "Kekka",
+  "license": "ISC",
+  "presentation": {
+    "animation": {
+      "dynamic": false,
+      "frames": 100
+    }
+  }
+}
