@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { debounce } from 'lodash-es';
-	import { defLayout, layout } from '$lib/collection/grid/gridLayout.store';
+	import { defLayout, layout } from '$lib/ui/collection/grid/gridLayout.store';
 	import { handleGridItemsClick, ricalculateBorderRadius } from './selection';
 	import { GridStack } from 'gridstack';
 	import { getContext, setContext } from 'svelte';

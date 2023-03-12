@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-  import type { GlobalAnimateVars } from '../AnimateCanvas.model';
+  import type { GlobalAnimateVars } from '../PresentationCanvas.model';
 
 
 

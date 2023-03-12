@@ -8,9 +8,7 @@
   "author": "NATEE",
   "license": "ISC",
   "presentation": {
-    "animation": {
-      "dynamic": false,
-      "frames": 105
-    }
+    "type": "gif",
+    "frames": 105
   }
 }

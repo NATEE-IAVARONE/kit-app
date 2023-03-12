@@ -8,9 +8,7 @@
   "author": "Kekka",
   "license": "ISC",
   "presentation": {
-    "animation": {
-      "dynamic": false,
-      "frames": 40
-    }
+    "type": "gif",
+    "frames": 40
   }
 }

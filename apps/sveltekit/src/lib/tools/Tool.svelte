@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import AnimateCanvas from '$lib/tools/presentation/AnimateCanvas.svelte';
+	import PresentationCanvas from '$lib/ui/presentation/PresentationCanvas.svelte';
   import FormRenderer from '$lib/tools/extra/FormRenderer.svelte';
 	import ExtraFooter from '$lib/tools/extra/ExtraFooter.svelte';
 	import type { ToolManifest } from '$lib/tools/tools.model';
 
-  export let manifest: ToolManifest;
+  export let data: ToolManifest;
   export let h = 1;
 
   let extraFooter: ExtraFooter;
@@ -26,7 +26,7 @@
     const port = 5173;
     const baseUrl = `http://localhost:${port}`;
 
-    const response = await fetch(`${baseUrl}/api/tools/${manifest.id}`, {
+    const response = await fetch(`${baseUrl}/api/tools/${data.id}`, {
       method: 'GET',
       headers: { 'content-type': 'application/json' }
     });
@@ -37,6 +37,13 @@
   }
 
   const dispatch = createEventDispatcher();
+
+  const canvasConfig = {
+    width: 160,
+    height: 90,
+  };
+
+  const assetsBaseURL = `http://localhost:5173/api/tools/${data.id}`;
 </script>
 
 
@@ -50,13 +57,17 @@
   on:dblclick={() => extra.visible || runTool()}
   on:contextmenu|preventDefault={() => dispatch('rightClick')}
 >
-  <AnimateCanvas toolManifest={manifest}/>
+  <PresentationCanvas
+    type={data.presentation?.type}
+    {assetsBaseURL}
+    {canvasConfig}
+  />
   <h3 class="mdc-typography--headline6">
-    {manifest.title}
+    {data.title}
   </h3>
   <section id="extra" class:visible={extra.visible}>
     {#if formSettings.isCreated}
-      <FormRenderer toolManifest={manifest} visible={extra.visible} footer={extraFooter}/>
+      <FormRenderer toolManifest={data} visible={extra.visible} footer={extraFooter}/>
     {/if}
     <ExtraFooter bind:this={extraFooter}></ExtraFooter>
   </section>

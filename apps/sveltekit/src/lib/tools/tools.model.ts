@@ -6,10 +6,8 @@ export interface ToolManifest extends Manifest {
 }
 
 export interface ToolManifestPresentation {
-  animation: ToolManifestAnimation;
-}
-
-export interface ToolManifestAnimation {
-  dynamic: boolean;
+  type: ToolManifestAnimationType;
   frames: number;
 }
+
+export type ToolManifestAnimationType = 'adobeAnimate' | 'gif';

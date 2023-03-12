@@ -3,7 +3,7 @@
 	import { writable, type Writable } from 'svelte/store';
 	import { GridStack, type GridItemHTMLElement, type GridStackNode } from 'gridstack';
 	import { debounce, set, pick, findKey } from 'lodash-es';
-	import AnimateCanvas from '$lib/tools/presentation/AnimateCanvas.svelte';
+	import AnimateCanvas from '$lib/ui/presentation/PresentationCanvas.svelte';
   import Tool from '$lib/tools/Tool.svelte';
 	import { defLayout, layout } from '$lib/groupLayout/layout.store';
 	import type { ToolManifest } from '$lib/tools/tools.model';
@@ -95,7 +95,7 @@
 		{:else}
       <div bind:this={toolElems[manifest.id]} class="grid-stack-item" gs-w="1">
         <Tool
-				  manifest={manifest}
+				  data={manifest}
 					h={$viewToolsInfo[manifest.id]?.h || 1}
 					on:afterUpdate={afterToolUpdate}
 					on:rightClick={toggleToolSize(manifest)}

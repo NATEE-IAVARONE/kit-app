@@ -3,3 +3,8 @@ export interface GlobalAnimateVars {
   canvas?: HTMLCanvasElement;
   dom_overlay_container?: HTMLElement;
 }
+
+export interface CanvasConfig {
+  width: number;
+  height: number;
+}

@@ -8,8 +8,6 @@
   "author": "NATEE",
   "license": "ISC",
   "presentation": {
-    "animation": {
-      "dynamic": true
-    }
+    "type": "adobeAnimate"
   }
 }

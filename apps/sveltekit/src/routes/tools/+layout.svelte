@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { set } from 'lodash-es';
-	import { layout, minWidthPerColumns } from '$lib/collection/grid/gridLayout.store';
+	import { layout, minWidthPerColumns } from '$lib/ui/collection/grid/gridLayout.store';
 	import { ColumnBy } from './tools.model';
 
 	let ready = false;

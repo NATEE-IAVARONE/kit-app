@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { getContext, afterUpdate } from 'svelte';
 
-	export let component;
-	export let manifest;
-
 	let el: HTMLDivElement;
 	const gridContext = getContext('grid');
 	
@@ -21,7 +18,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="grid-stack-item" bind:this={el} gs-max-w="1">
-	<svelte:component this={component} {manifest}></svelte:component>
+	<slot></slot>
 </div>
 
 

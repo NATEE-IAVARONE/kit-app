@@ -1,23 +1,26 @@
 <script lang="ts">
 	import { tools } from '$lib/tools/tools.store';
 	import type { ToolManifest } from '$lib/tools/tools.model';
-	import Collection from '$lib/collection/Collection.svelte';
+	import Collection from '$lib/ui/collection/Collection.svelte';
 	import { setContext } from 'svelte';
+  import Tool from '$lib/tools/Tool.svelte';
 
 	export let data: { manifests: ToolManifest[] };
 
 	tools.set(data.manifests);
 
-	const lovedToolManifests = data.manifests.filter(t => ['loc-assoc', 'checklist', 'chrome'].includes(t.id));
+	const lovedToolManifests = data.manifests
+		.filter(t => ['loc-assoc', 'checklist', 'chrome'].includes(t.id))
+		.map(data => ({ data }));
 
 	interface Collection {
 		title: string;
-    manifests: ToolManifest[];
+    components: {data: ToolManifest}[];
 	}
 
   let collections: Collection[] = [
-    { title: 'LOVED',	manifests: lovedToolManifests },
-    { title: 'ALL', 	manifests: data.manifests },
+    { title: 'LOVED',	components: lovedToolManifests },
+    { title: 'ALL', 	components: data.manifests.map(data => ({ data })) },
   ];
 
 	const context = {
@@ -34,8 +37,10 @@
 
 
 <main class="scrollable">
-	{#each collections as collection}
-		<Collection {collection}></Collection>
+	{#each collections as {title, components}}
+		<Collection {title} {components} let:data>
+			<Tool slot="item" {data}></Tool>
+		</Collection>
 	{/each}
 </main>
 
