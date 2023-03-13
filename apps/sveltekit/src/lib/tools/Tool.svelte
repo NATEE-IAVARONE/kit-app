@@ -52,8 +52,7 @@
 
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<section
-  class="grid-stack-item-content"
+<main
   on:dblclick={() => extra.visible || runTool()}
   on:contextmenu|preventDefault={() => dispatch('rightClick')}
 >
@@ -71,7 +70,7 @@
     {/if}
     <ExtraFooter bind:this={extraFooter}></ExtraFooter>
   </section>
-</section>
+</main>
 
 
 
@@ -79,6 +78,18 @@
 
 
 <style lang="scss">
+  main {
+    display: flex;
+    flex-direction: column;
+		cursor: pointer;
+		background-color: var(--surface);
+		border-radius: 4px;
+		overflow: hidden;
+
+    & > :not(#extra) {
+      flex-shrink: 0;
+    }
+	}
   #extra {
     display: flex;
     flex-direction: column;
@@ -91,17 +102,5 @@
   }
 	.mdc-typography--headline6 {
 		margin: 0;
-	}
-  .grid-stack-item-content {
-    display: flex;
-    flex-direction: column;
-		cursor: pointer;
-		background-color: var(--surface);
-		border-radius: 4px;
-		overflow: hidden;
-
-    & > :not(#extra) {
-      flex-shrink: 0;
-    }
 	}
 </style>

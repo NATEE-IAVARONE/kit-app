@@ -1,24 +1,13 @@
-<script lang="ts">
-	import { getContext, afterUpdate } from 'svelte';
-
-	let el: HTMLDivElement;
-	const gridContext = getContext('grid');
-	
-	afterUpdate(() => {
-		let localVars = gridContext.itemsLocalVars.find(vars => vars.el === el);
-		localVars || gridContext.itemsLocalVars.push(localVars = { el });
-		gridContext.onChange();
-	});
-</script>
 
 
 
 
 
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="grid-stack-item" bind:this={el} gs-max-w="1">
-	<slot></slot>
+<div class="grid-stack-item" gs-max-w="1">
+	<section class="grid-stack-item-content">
+		<slot></slot>
+	</section>
 </div>
 
 

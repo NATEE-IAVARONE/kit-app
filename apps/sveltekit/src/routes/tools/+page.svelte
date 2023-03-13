@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { tools } from '$lib/tools/tools.store';
-	import type { ToolManifest } from '$lib/tools/tools.model';
-	import Collection from '$lib/ui/collection/Collection.svelte';
 	import { setContext } from 'svelte';
+	import { tools } from '$lib/tools/tools.store';
+	import Collection from '$lib/ui/collection/Collection.svelte';
   import Tool from '$lib/tools/Tool.svelte';
+	import type { ToolManifest } from '$lib/tools/tools.model';
 
 	export let data: { manifests: ToolManifest[] };
 

@@ -1,10 +1,13 @@
 <script lang="ts">
+	import { afterUpdate, createEventDispatcher } from 'svelte';
+	import { GridStack } from 'gridstack';
 	import { debounce } from 'lodash-es';
 	import { defLayout, layout } from '$lib/ui/collection/grid/gridLayout.store';
-	import { handleGridItemsClick, ricalculateBorderRadius } from './selection';
-	import { GridStack } from 'gridstack';
-	import { getContext, setContext } from 'svelte';
+	import { ricalculateBorderRadius } from './selection';
 
+
+
+  const dispatch = createEventDispatcher();
 	let {columns} = defLayout;
 
   let grid: GridStack | undefined;
@@ -16,26 +19,12 @@
 		grid?.compact();
 	});
 
-	const onChangeFnByStage = {
-		initial: debounce(() => {
-			onChange = context.onChange = onChangeFnByStage.subsequent;
-			initGrid();
-			onChange();
-		}, 100),
-		subsequent: () => {
-			ricalculateBorderRadius(context.itemsLocalVars);
-		}
-	};
-
-	let onChange = onChangeFnByStage.initial;
-
-	const context = {
-		onChange,
-		itemsLocalVars: []
-	};
-
-	const collectionContext = getContext('collection');
-	setContext('grid', context);
+	const onChange = debounce(() => {
+		grid || initGrid();
+		ricalculateBorderRadius(grid.getGridItems());
+	}, 100);
+	
+	afterUpdate(onChange);
 
 	function initGrid() {
 		let {columns, margin, cellHeight} = defLayout;
@@ -50,22 +39,27 @@
 			acceptWidgets: true,
 		}, gridEl);
 
-		assignGridNodesToLocalVars();
-		handleGridItemsClick(context.itemsLocalVars);
 		handleGridEvents();
-	}
-
-	function assignGridNodesToLocalVars() {
-		grid.getGridItems().forEach(gridEl => {
-			const el = gridEl.gridstackNode!.el!;
-			const vars = context.itemsLocalVars.find(v => v.el === el);
-			vars.gridNode = gridEl.gridstackNode;
-		});
 	}
 
 	function handleGridEvents() {
 		['change'].forEach(name => grid!.on(name, onChange));
-		['added', 'removed'].forEach(name => grid!.on(name, collectionContext.update));
+		['added', 'removed'].forEach(name => grid!.on(name, () => dispatch('update')));
+	}
+
+	function click(event: PointerEvent) {
+		const isMultiselect = event.ctrlKey;
+		const target = event.target as HTMLDivElement;
+		const item = target.closest('.grid-stack-item');
+
+		item.classList.toggle('selected');
+
+		const items = grid.getGridItems();
+    
+    isMultiselect || items
+    .forEach(el => el === item || el.classList.remove('selected'));
+    
+    ricalculateBorderRadius(items);
 	}
 </script>
 
@@ -74,7 +68,7 @@
 
 
 
-<main bind:this={gridEl}>
+<main bind:this={gridEl} on:click={click}>
   <slot></slot>
 </main>
 
