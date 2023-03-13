@@ -3,7 +3,7 @@
 	import { GridStack } from 'gridstack';
 	import { debounce } from 'lodash-es';
 	import { defLayout, layout } from '$lib/ui/collection/grid/gridLayout.store';
-	import { ricalculateBorderRadius } from './selection';
+	import { deselectAll, ricalculateBorderRadius } from './selection';
 
 
 
@@ -49,17 +49,14 @@
 
 	function click(event: PointerEvent) {
 		const isMultiselect = event.ctrlKey;
+		if (!isMultiselect) return deselectAll();
+
 		const target = event.target as HTMLDivElement;
 		const item = target.closest('.grid-stack-item');
 
 		item.classList.toggle('selected');
-
-		const items = grid.getGridItems();
     
-    isMultiselect || items
-    .forEach(el => el === item || el.classList.remove('selected'));
-    
-    ricalculateBorderRadius(items);
+    ricalculateBorderRadius(grid.getGridItems());
 	}
 </script>
 
@@ -68,6 +65,7 @@
 
 
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <main bind:this={gridEl} on:click={click}>
   <slot></slot>
 </main>

@@ -50,3 +50,11 @@ function getBorderClassNames({x, y, w, h}: Coords, field: GridElement['el'][][])
   .map((b, i) => b ? '' : borderClassNames[i])
   .filter(Boolean) as unknown as string[];
 }
+
+export function deselectAll(except?: HTMLDivElement) {
+  const selected = document.querySelectorAll('.grid-stack-item.selected');
+
+  if (selected.length === 0) return;
+
+  selected.forEach(el => el.classList.remove('selected'));
+}
