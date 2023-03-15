@@ -1,5 +1,10 @@
 :root {
   --grid-columns: 2;
+  --grid-margin: 4px;
+  --grid-cell-width: 160px;
+  --grid-cell-height: 90px;
+  --width-per-column: calc(2 * var(--grid-margin) + var(--grid-cell-width) + 0px);
+  --grid-page-width: calc(var(--grid-columns) * var(--width-per-column));
 }
 
 html,

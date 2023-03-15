@@ -4,6 +4,7 @@
 
 	export let title: string;
 	export let components;
+	export let columns: number;
 
 	function update() { components = components }
 </script>
@@ -15,7 +16,7 @@
 
 <section>
 	<h2>{ title }</h2>
-	<Grid on:update={update}>
+	<Grid {columns} on:update={update}>
 		{#each components as { data }}
 			<GridItem>
 				<slot name="item" {data}></slot>

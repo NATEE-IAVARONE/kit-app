@@ -2,38 +2,35 @@
 	import { afterUpdate, createEventDispatcher } from 'svelte';
 	import { GridStack } from 'gridstack';
 	import { debounce } from 'lodash-es';
-	import { defLayout, layout } from '$lib/ui/collection/grid/gridLayout.store';
 	import { deselectAll, ricalculateBorderRadius } from './selection';
 
+	export let columns: number;
+	let grid: GridStack | undefined;
+	let gridEl: HTMLElement;
+	$: columns && gridEl && setColumns();
 
+	function setColumns() {
+		grid || initGrid();
+		grid?.column(columns);
+		grid?.compact();
+	}
 
   const dispatch = createEventDispatcher();
-	let {columns} = defLayout;
-
-  let grid: GridStack | undefined;
-  let gridEl: HTMLElement;
-
-  layout.subscribe(async val => {
-		if (columns === val.columns) return;
-		grid?.column(columns = val.columns);
-		grid?.compact();
-	});
 
 	const onChange = debounce(() => {
-		grid || initGrid();
-		ricalculateBorderRadius(grid.getGridItems());
+		grid && ricalculateBorderRadius(grid.getGridItems());
 	}, 100);
 	
 	afterUpdate(onChange);
 
 	function initGrid() {
-		let {columns, margin, cellHeight} = defLayout;
+		const margin = 4;
 
 		grid = GridStack.init({
 			disableOneColumnMode: true,
 			column: columns,
 			minRow: 1,
-			cellHeight,
+			cellHeight: 106 + margin * 2,
 			margin,
 			disableResize: true,
 			acceptWidgets: true,
@@ -69,17 +66,3 @@
 <main bind:this={gridEl} on:click={click}>
   <slot></slot>
 </main>
-
-
-
-
-
-
-<style lang="scss">
-	:root {
-		--grid-page-width: calc(var(--grid-columns) * var(--width-per-column));
-	}
-	main {
-		width: var(--grid-page-width);
-	}
-</style>

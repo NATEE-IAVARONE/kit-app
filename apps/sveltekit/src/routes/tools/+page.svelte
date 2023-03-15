@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
+	import { clamp } from 'lodash';
 	import { tools } from '$lib/tools/tools.store';
 	import Collection from '$lib/ui/collection/Collection.svelte';
+  import Page from '$lib/ui/page/Page.svelte';
   import Tool from '$lib/tools/Tool.svelte';
 	import type { ToolManifest } from '$lib/tools/tools.model';
 
 	export let data: { manifests: ToolManifest[] };
+
 
 	tools.set(data.manifests);
 
@@ -29,6 +32,20 @@
 
 	setContext('collections', context);
 
+	
+	const widthPerColumn = 168;
+	const minColumn = 1;
+	const maxColumn = 3;
+	let columns: number;
+	let previousColumns: number;
+
+	function setWidthFn(clientWidth: number, cb: Function, force = false) {
+		const newColumns = clamp(Math.floor(clientWidth / widthPerColumn), minColumn, maxColumn);
+		if (!force && newColumns === previousColumns) return;
+
+		columns = previousColumns = newColumns;
+		cb(`${columns * widthPerColumn}px`);
+	};
 </script>
 
 
@@ -36,29 +53,10 @@
 
 
 
-<main class="scrollable">
+<Page {setWidthFn}>
 	{#each collections as {title, components}}
-		<Collection {title} {components} let:data>
-			<Tool slot="item" {data}></Tool>
-		</Collection>
+	<Collection {title} {components} {columns} let:data>
+		<Tool slot="item" {data}></Tool>
+	</Collection>
 	{/each}
-</main>
-
-
-
-
-
-
-<style lang="scss">
-	main {
-		display: inline-block;
-		height: 100%;
-		text-align: center;
-		margin: 0;
-		overflow-y: scroll;
-
-		&::-webkit-scrollbar{
-    	display: none;
-  	}
-	}
-</style>
+</Page>

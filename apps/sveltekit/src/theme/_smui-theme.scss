@@ -47,3 +47,19 @@ body,
   text-align: center;
   position: relative;
 }
+
+
+html {
+  height: 100%;
+  min-height: 600px;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+main {
+  &:not(.scrollable) {
+    overflow: hidden;
+  }
+}

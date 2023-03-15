@@ -38,8 +38,10 @@
 
   const dispatch = createEventDispatcher();
 
+  const width = '160px';
+  const height = '106px';
   const canvasConfig = {
-    width: 160,
+    width,
     height: 90,
   };
 
@@ -55,6 +57,8 @@
 <main
   on:dblclick={() => extra.visible || runTool()}
   on:contextmenu|preventDefault={() => dispatch('rightClick')}
+  style:width
+  style:height
 >
   <PresentationCanvas
     type={data.presentation?.type}
