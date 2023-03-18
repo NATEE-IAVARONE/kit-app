@@ -1,0 +1,14 @@
+{
+  "id": "color-dropper",
+  "name": "@kit-tools/color-dropper",
+  "title": "Color Dropper",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [1, 3],
+  "author": "Kekka",
+  "license": "ISC",
+  "presentation": {
+    "type": "gif",
+    "frames": 21
+  }
+}
