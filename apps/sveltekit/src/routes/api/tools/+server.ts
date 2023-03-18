@@ -1,4 +1,4 @@
-import { NodeModulesManager } from '$lib/modules/nodeModules.server';
+import { NodeModulesManager } from '$lib/kitServer';
 
 const moduleManager = new NodeModulesManager();
 

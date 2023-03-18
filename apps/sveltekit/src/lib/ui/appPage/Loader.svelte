@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, createEventDispatcher } from 'svelte';
-  import fragment from '$lib/glsl/main.frag';
+  import fragment from '$lib/ui/gfx/glsl/main.frag';
 
 	const dispatch = createEventDispatcher();
 

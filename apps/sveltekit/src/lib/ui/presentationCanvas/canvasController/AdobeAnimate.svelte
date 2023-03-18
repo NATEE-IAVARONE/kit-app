@@ -9,7 +9,7 @@
   const refs: GlobalAnimateVars = {};
   
   onMount(async () => {
-    const { createjs } = await import('$lib/createjs');
+    const { createjs } = await import('$lib/ui/gfx/createjs');
     const { setDeps, main, init } = await import(/* @vite-ignore */src);
 
     refs.canvas = refs.anim_container!.getElementsByTagName('canvas')[0];
@@ -18,10 +18,6 @@
     main(createjs, refs);
     init(createjs);
   });
-
-  function mouseenter() {
-    console.log('mouseenter');
-  }
 </script>
 
 
@@ -29,7 +25,7 @@
 
 
 
-<div bind:this={refs.anim_container} on:mouseenter>
+<div bind:this={refs.anim_container}>
   <slot></slot>
   <section bind:this={refs.dom_overlay_container}></section>
 </div>

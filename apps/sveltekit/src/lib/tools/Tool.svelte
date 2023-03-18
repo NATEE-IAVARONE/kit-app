@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import PresentationCanvas from '$lib/ui/presentation/PresentationCanvas.svelte';
+	import PresentationCanvas from '$lib/ui/presentationCanvas/PresentationCanvas.svelte';
   import FormRenderer from '$lib/tools/extra/FormRenderer.svelte';
 	import ExtraFooter from '$lib/tools/extra/ExtraFooter.svelte';
 	import type { ToolManifest } from '$lib/tools/tools.model';

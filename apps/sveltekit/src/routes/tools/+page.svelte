@@ -1,16 +1,12 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
 	import { clamp } from 'lodash';
-	import { tools } from '$lib/tools/tools.store';
-	import Collection from '$lib/ui/collection/Collection.svelte';
-  import Page from '$lib/ui/page/Page.svelte';
+	import Collection from '$lib/ui/cardCollection/CardCollection.svelte';
+  import Page from '$lib/ui/appPage/AppPage.svelte';
   import Tool from '$lib/tools/Tool.svelte';
 	import type { ToolManifest } from '$lib/tools/tools.model';
 
 	export let data: { manifests: ToolManifest[] };
-
-
-	tools.set(data.manifests);
 
 	const lovedToolManifests = data.manifests
 		.filter(t => ['loc-assoc', 'checklist', 'chrome'].includes(t.id))

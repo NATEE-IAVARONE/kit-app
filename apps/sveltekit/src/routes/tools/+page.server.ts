@@ -1,10 +1,9 @@
-import { NodeModulesManager } from '$lib/modules/nodeModules.server';
+import { kitServer } from '$lib/kitServer';
 import type { PageServerLoad } from './$types';
 
-const moduleManager = new NodeModulesManager();
 
 export const load = (async ({ params }) => {
-  const manifests = await moduleManager.getManifests();
+  const manifests = await kitServer.modules.getManifests();
 
   return {
     manifests,

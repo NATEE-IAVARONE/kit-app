@@ -10,7 +10,7 @@
   let animator: any;
   
   onMount(async () => {
-    window.gifler || await import('$lib/gfx/gifler');
+    window.gifler || await import('$lib/ui/gfx/gifler');
     refs.canvas = refs.anim_container!.getElementsByTagName('canvas')[0];
 
     gifler(src)

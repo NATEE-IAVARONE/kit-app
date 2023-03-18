@@ -1,4 +1,4 @@
-import type { Manifest } from '../modules/modules.model';
+import type { Manifest } from '../kitServer';
 
 export interface ToolManifest extends Manifest {
   presentation: ToolManifestPresentation;

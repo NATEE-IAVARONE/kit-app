@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Loader from '$lib/page/Loader.svelte';
+	import Loader from '$lib/ui/appPage/Loader.svelte';
 
 	let loaderEl: Loader;
   
