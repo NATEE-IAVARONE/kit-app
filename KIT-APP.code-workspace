@@ -14,7 +14,8 @@
     },
 		"files.autoSave": "onFocusChange",
 		"editor.tabSize": 2,
-		"task.allowAutomaticTasks": "on"
+		"task.allowAutomaticTasks": "on",
+		"git.ignoreLimitWarning": true
 	},
 	"tasks": {
 		"version": "2.0.0",
