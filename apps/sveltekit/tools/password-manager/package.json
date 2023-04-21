@@ -1,0 +1,14 @@
+{
+  "id": "password-manager",
+  "name": "@kit-tools/password-manager",
+  "title": "Password Manager",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [1, 3],
+  "author": "Kekka",
+  "license": "ISC",
+  "presentation": {
+    "type": "gif",
+    "frames": 126
+  }
+}
