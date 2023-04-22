@@ -1,0 +1,14 @@
+{
+  "id": "button-enabler",
+  "name": "@kit-tools/button-enabler",
+  "title": "Button Enabler",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [1, 3],
+  "author": "Kekka",
+  "license": "ISC",
+  "presentation": {
+    "type": "gif",
+    "frames": 100
+  }
+}

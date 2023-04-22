@@ -1,0 +1,14 @@
+{
+  "id": "SUH9",
+  "name": "@kit-tools/SUH9",
+  "title": "SUH9",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [1, 3],
+  "author": "Kekka",
+  "license": "ISC",
+  "presentation": {
+    "type": "gif",
+    "frames": 100
+  }
+}

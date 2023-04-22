@@ -1,0 +1,14 @@
+{
+  "id": "EC6",
+  "name": "@kit-tools/EC6",
+  "title": "EC6",
+  "version": "1.0.0",
+  "description": "",
+  "cardSizes": [1, 3],
+  "author": "Kekka",
+  "license": "ISC",
+  "presentation": {
+    "type": "gif",
+    "frames": 100
+  }
+}
